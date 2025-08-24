@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 
 // Setup global test environment
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (globalThis as any).ResizeObserver = class ResizeObserver {
     observe() { }
     unobserve() { }
@@ -23,6 +24,7 @@ Object.defineProperty(window, 'matchMedia', {
 });
 
 // Mock IntersectionObserver
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (globalThis as any).IntersectionObserver = class IntersectionObserver {
     observe() {
         return null;
