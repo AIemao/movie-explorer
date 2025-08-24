@@ -112,37 +112,38 @@ const HomeContainer = styled.div`
   background: ${({ theme }) => theme.background};
 `;
 
-const MoviesGrid = styled(Grid)`
-  & > * {
-    animation: ${fadeInUp} 0.6s ease-out;
-    animation-fill-mode: both;
-  }
+// MoviesGrid removido pois Grid do GlobalStyles é suficiente
+// const MoviesGrid = styled(Grid)`
+//   & > * {
+//     animation: ${fadeInUp} 0.6s ease-out;
+//     animation-fill-mode: both;
+//   }
 
-  & > *:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-  & > *:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-  & > *:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-  & > *:nth-child(4) {
-    animation-delay: 0.4s;
-  }
-  & > *:nth-child(5) {
-    animation-delay: 0.5s;
-  }
-  & > *:nth-child(6) {
-    animation-delay: 0.6s;
-  }
-  & > *:nth-child(7) {
-    animation-delay: 0.7s;
-  }
-  & > *:nth-child(8) {
-    animation-delay: 0.8s;
-  }
-`;
+//   & > *:nth-child(1) {
+//     animation-delay: 0.1s;
+//   }
+//   & > *:nth-child(2) {
+//     animation-delay: 0.2s;
+//   }
+//   & > *:nth-child(3) {
+//     animation-delay: 0.3s;
+//   }
+//   & > *:nth-child(4) {
+//     animation-delay: 0.4s;
+//   }
+//   & > *:nth-child(5) {
+//     animation-delay: 0.5s;
+//   }
+//   & > *:nth-child(6) {
+//     animation-delay: 0.6s;
+//   }
+//   & > *:nth-child(7) {
+//     animation-delay: 0.7s;
+//   }
+//   & > *:nth-child(8) {
+//     animation-delay: 0.8s;
+//   }
+// `;
 
 export const Home: React.FC = () => {
   const [movies, setMovies] = useState<MoviesResponse | null>(null);

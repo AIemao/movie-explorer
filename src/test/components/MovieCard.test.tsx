@@ -49,10 +49,12 @@ describe("MovieCard", () => {
     const movieLink = screen.getByTestId("movie-card-1");
     expect(movieLink).toHaveAttribute("href", "/movie/1");
   });
-
   it("should show placeholder when no poster available", () => {
-    const movieWithoutPoster = { ...mockMovie, poster_path: null };
-    renderWithProviders(<MovieCard movie={movieWithoutPoster as any} />);
+    const movieWithoutPoster = {
+      ...mockMovie,
+      poster_path: null as unknown as string,
+    };
+    renderWithProviders(<MovieCard movie={movieWithoutPoster} />);
 
     expect(screen.getByText("🎬")).toBeInTheDocument();
   });
