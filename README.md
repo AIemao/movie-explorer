@@ -127,14 +127,18 @@ Este projeto foi desenvolvido com foco na simplicidade para facilitar o aprendiz
 ## 📝 Scripts Disponíveis
 
 ```bash
-npm run dev               # Executa em modo de desenvolvimento
-npm run build             # Gera build de produção
-npm run preview           # Visualiza build de produção
-npm run lint              # Executa linting
-npm run test              # Executa todos os testes
-npm run test:watch        # Executa testes em modo watch
-npm run test:coverage     # Executa testes com cobertura
-npm run coverage:analyze  # Ver resumo personalizado de cobertura
+npm run dev                    # Executa em modo de desenvolvimento
+npm run build                  # Gera build de produção
+npm run preview                # Visualiza build de produção
+npm run lint                   # Executa linting
+npm run test                   # Executa todos os testes (modo watch)
+npm run test:run               # Executa testes uma vez e finaliza
+npm run test:watch             # Executa testes em modo watch (explícito)
+npm run test:ui                # Interface visual para testes
+npm run test:coverage          # Executa testes com cobertura (single run)
+npm run test:coverage:watch    # Executa testes com cobertura em modo watch
+npm run test:coverage:summary  # Executa cobertura + análise personalizada
+npm run coverage:analyze       # Ver apenas o resumo personalizado de cobertura
 ```
 
 ## 📊 Análise de Cobertura Personalizada

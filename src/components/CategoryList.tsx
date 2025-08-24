@@ -47,7 +47,10 @@ const ErrorMessage = styled.div`
   margin: 2rem 0;
 `;
 
-interface CategoryListProps {}
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+interface CategoryListProps {
+  // Props para o componente CategoryList (a ser implementado)
+}
 
 export const CategoryList: React.FC<CategoryListProps> = () => {
   const [genres, setGenres] = useState<Genre[]>([]);

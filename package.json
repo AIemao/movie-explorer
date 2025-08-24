@@ -29,9 +29,12 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:run": "vitest --run",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage",
-    "test:coverage:summary": "npm run test:coverage -- --run && node scripts/coverage-summary.js",
+    "test:coverage": "vitest --coverage --run",
+    "test:coverage:watch": "vitest --coverage",
+    "test:coverage:summary": "npm run test:coverage && node scripts/coverage-summary.js",
     "coverage:analyze": "node scripts/coverage-summary.js"
   },
   "dependencies": {

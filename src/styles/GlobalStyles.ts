@@ -9,14 +9,15 @@ const spin = keyframes`
   }
 `;
 
-const pulse = keyframes`
-  0%, 100% {
-    opacity: 0.4;
-  }
-  50% {
-    opacity: 1;
-  }
-`;
+// Animação pulse removida pois não está sendo utilizada
+// const pulse = keyframes`
+//   0%, 100% {
+//     opacity: 0.4;
+//   }
+//   50% {
+//     opacity: 1;
+//   }
+// `;
 
 export const theme = {
   light: {
