@@ -127,20 +127,90 @@ Este projeto foi desenvolvido com foco na simplicidade para facilitar o aprendiz
 ## 📝 Scripts Disponíveis
 
 ```bash
-npm run dev      # Executa em modo de desenvolvimento
-npm run build    # Gera build de produção
-npm run preview  # Visualiza build de produção
-npm run lint     # Executa linting
-npm run test     # Executa testes com Vitest (quando configurado)
+npm run dev               # Executa em modo de desenvolvimento
+npm run build             # Gera build de produção
+npm run preview           # Visualiza build de produção
+npm run lint              # Executa linting
+npm run test              # Executa todos os testes
+npm run test:watch        # Executa testes em modo watch
+npm run test:coverage     # Executa testes com cobertura
+npm run coverage:analyze  # Ver resumo personalizado de cobertura
 ```
 
-## 🔍 Próximos Passos para Testes
+## 📊 Análise de Cobertura Personalizada
 
-1. ✅ Vitest configurado para testes unitários
-2. Configurar Playwright ou Cypress para testes E2E
-3. Implementar mocks para a API do TMDb
-4. Criar cenários de teste para diferentes estados de loading/error
-5. Testar responsividade e acessibilidade
+Este projeto inclui um script personalizado de análise de cobertura que fornece insights detalhados sobre o estado dos testes:
+
+### 🎯 Funcionalidades da Análise
+
+- **📊 Estatísticas abrangentes:** Total de arquivos, percentual com/sem testes, cobertura geral
+- **🌟 Categorização inteligente:** Divide arquivos em boa cobertura (≥80%), parcial (<80%) e sem cobertura
+- **📁 Análise por arquivo:** Mostra cobertura individual de cada arquivo do projeto
+- **⚡ Comandos úteis:** Lista todos os comandos disponíveis para desenvolvimento
+- **🎯 Orientações práticas:** Sugere próximos passos e estrutura para novos testes
+
+### 🖥️ Exemplo de Saída
+
+```
+🎯 RESUMO PERSONALIZADO DE COBERTURA
+==========================================
+📊 Total de arquivos analisados: 12
+✅ Arquivos com testes: 3 (25.0%)
+❌ Arquivos sem testes: 9 (75.0%)
+📈 Cobertura geral: 19.89%
+📝 Total de linhas: 704 (140 cobertas)
+
+🌟 Arquivos com boa cobertura (≥80%):
+   ✅ src/styles/GlobalStyles.ts - 100.0%
+   ✅ src/components/MovieCard.tsx - 95.5%
+
+⚡ Arquivos com cobertura parcial (<80%):
+   🔶 src/api/tmdb.ts - 43.4%
+
+🔴 Arquivos sem cobertura:
+   ❌ src/App.tsx - 0%
+   ❌ src/components/Header.tsx - 0%
+   [...]
+
+🎯 Para criar novos testes:
+   • Componentes: src/test/components/[NomeComponente].test.tsx
+   • Pages: src/test/pages/[NomePage].test.tsx
+   • API: src/test/api/[nomeService].test.ts
+   • Utils: src/test/utils/[nomeUtil].test.ts
+```
+
+### 📋 Estrutura de Testes
+
+```
+src/test/
+├── setup.ts              # Configuração do ambiente de testes
+├── components/            # Testes de componentes React
+│   └── MovieCard.test.tsx
+├── api/                   # Testes de serviços de API
+│   └── tmdb.test.ts
+├── pages/                 # Testes de páginas (a implementar)
+└── utils/                 # Testes de utilitários (a implementar)
+```
+
+## 🔍 Status dos Testes
+
+### ✅ Implementado
+
+- ✅ Vitest configurado para testes unitários
+- ✅ Ambiente de teste configurado com DOM testing
+- ✅ Testes do componente MovieCard (95.5% de cobertura)
+- ✅ Testes básicos da API TMDb (43.4% de cobertura)
+- ✅ Script personalizado de análise de cobertura
+- ✅ GlobalStyles com 100% de cobertura
+
+### 🚧 Próximos Passos
+
+1. Configurar Playwright ou Cypress para testes E2E
+2. Implementar testes para componentes Header, MovieDetails
+3. Criar testes para páginas Home, GenrePage
+4. Melhorar cobertura dos serviços de API
+5. Implementar mocks mais robustos para diferentes cenários
+6. Testar responsividade e acessibilidade
 
 ## ✨ Funcionalidades Implementadas
 

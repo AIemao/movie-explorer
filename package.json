@@ -30,7 +30,9 @@
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:coverage": "vitest --coverage"
+    "test:coverage": "vitest --coverage",
+    "test:coverage:summary": "npm run test:coverage -- --run && node scripts/coverage-summary.js",
+    "coverage:analyze": "node scripts/coverage-summary.js"
   },
   "dependencies": {
     "@types/styled-components": "^5.1.34",
