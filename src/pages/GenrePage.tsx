@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import type { MoviesResponse } from "../api/tmdb";
@@ -186,51 +186,53 @@ export const GenrePage: React.FC = () => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const fetchMoviesByGenre = useCallback(
+    async (page: number = 1, append: boolean = false) => {
+      if (!genreId) return;
 
-  const fetchMoviesByGenre = async (
-    page: number = 1,
-    append: boolean = false
-  ) => {
-    if (!genreId) return;
+      try {
+        if (append) {
+          setLoadingMore(true);
+        } else {
+          setLoading(true);
+        }
 
-    try {
-      if (append) {
-        setLoadingMore(true);
-      } else {
-        setLoading(true);
+        const response = await tmdbService.getMoviesByGenre(
+          parseInt(genreId),
+          page
+        );
+
+        if (append) {
+          setMovies((prevMovies) =>
+            prevMovies
+              ? {
+                  ...response,
+                  results: [...prevMovies.results, ...response.results],
+                }
+              : response
+          );
+        } else {
+          setMovies(response);
+        }
+
+        setCurrentPage(page);
+      } catch (err) {
+        console.error("Erro ao carregar filmes por gênero:", err);
+        setError(
+          "Erro ao carregar filmes. Verifique sua conexão e tente novamente."
+        );
+      } finally {
+        setLoading(false);
+        setLoadingMore(false);
       }
-
-      const response = await tmdbService.getMoviesByGenre(
-        parseInt(genreId),
-        page
-      );
-
-      if (append && movies) {
-        setMovies({
-          ...response,
-          results: [...movies.results, ...response.results],
-        });
-      } else {
-        setMovies(response);
-      }
-
-      setCurrentPage(page);
-    } catch (err) {
-      console.error("Erro ao carregar filmes por gênero:", err);
-      setError(
-        "Erro ao carregar filmes. Verifique sua conexão e tente novamente."
-      );
-    } finally {
-      setLoading(false);
-      setLoadingMore(false);
-    }
-  };
-
+    },
+    [genreId]
+  );
   useEffect(() => {
     if (genreId) {
       fetchMoviesByGenre(1);
     }
-  }, [genreId]);
+  }, [genreId, fetchMoviesByGenre]);
 
   const handleLoadMore = () => {
     if (movies && currentPage < movies.total_pages) {

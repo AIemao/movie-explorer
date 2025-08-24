@@ -240,6 +240,25 @@ src/test/
 
 ## 🚀 Deploy
 
+### GitHub Actions (CI/CD)
+
+Este projeto inclui um workflow do GitHub Actions configurado. Para que os testes passem no CI:
+
+1. **Fork este repositório**
+2. **Configure o secret no seu repositório:**
+
+   - Vá para `Settings > Secrets and Variables > Actions`
+   - Adicione um novo **Repository Secret** chamado `VITE_TMDB_API_KEY`
+   - Cole sua chave da API TMDb (Bearer Token)
+
+   > ⚡ As outras variáveis (`VITE_TMDB_BASE_URL` e `VITE_TMDB_IMAGE_BASE_URL`) já estão configuradas automaticamente no workflow.
+
+3. **O workflow executará automaticamente:**
+   - ✅ Linting com ESLint
+   - ✅ Verificação de tipos TypeScript
+   - ✅ Testes unitários com cobertura
+   - ✅ Build de produção
+
 ### Vercel (Recomendado)
 
 1. Faça fork deste repositório
