@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import type { Genre, MoviesResponse } from "../api/tmdb";
 import { tmdbService } from "../api/tmdb";
 import { Grid, LoadingSpinner } from "../styles/GlobalStyles";
+import { LOADING_MESSAGE, TEST_IDS } from "./constants/categoryList.constants";
 import { MovieCard } from "./MovieCard";
+import { handleCategoriesError } from "./utils/categoryList.utils";
 
 const Container = styled.div`
   padding: 2rem 0;
@@ -47,12 +49,7 @@ const ErrorMessage = styled.div`
   margin: 2rem 0;
 `;
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface CategoryListProps {
-  // Props para o componente CategoryList (a ser implementado)
-}
-
-export const CategoryList: React.FC<CategoryListProps> = () => {
+export function CategoryList() {
   const [genres, setGenres] = useState<Genre[]>([]);
   const [movies, setMovies] = useState<MoviesResponse | null>(null);
   const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
@@ -65,8 +62,7 @@ export const CategoryList: React.FC<CategoryListProps> = () => {
         const response = await tmdbService.getGenres();
         setGenres(response.genres);
       } catch (err) {
-        console.error("Erro ao carregar gêneros:", err);
-        setError("Erro ao carregar gêneros");
+        setError(handleCategoriesError(err));
       } finally {
         setLoading(false);
       }
@@ -84,15 +80,14 @@ export const CategoryList: React.FC<CategoryListProps> = () => {
       const response = await tmdbService.getMoviesByGenre(genreId);
       setMovies(response);
     } catch (err) {
-      console.error("Erro ao carregar filmes por gênero:", err);
-      setError("Erro ao carregar filmes");
+      setError(handleCategoriesError(err));
     } finally {
       setLoading(false);
     }
   };
 
   if (loading && !movies) {
-    return <LoadingSpinner>Carregando categorias...</LoadingSpinner>;
+    return <LoadingSpinner>{LOADING_MESSAGE}</LoadingSpinner>;
   }
 
   if (error && !movies) {
@@ -109,7 +104,7 @@ export const CategoryList: React.FC<CategoryListProps> = () => {
             key={genre.id}
             active={selectedGenre === genre.id}
             onClick={() => handleGenreClick(genre.id)}
-            data-testid={`genre-button-${genre.id}`}
+            data-testid={`${TEST_IDS.CATEGORY_CARD}-${genre.id}`}
           >
             {genre.name}
           </CategoryButton>
@@ -123,7 +118,7 @@ export const CategoryList: React.FC<CategoryListProps> = () => {
       {error && selectedGenre && <ErrorMessage>{error}</ErrorMessage>}
 
       {movies && (
-        <Grid data-testid="movies-grid">
+        <Grid data-testid={TEST_IDS.CATEGORIES_GRID}>
           {movies.results.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
@@ -137,4 +132,4 @@ export const CategoryList: React.FC<CategoryListProps> = () => {
       )}
     </Container>
   );
-};
+}

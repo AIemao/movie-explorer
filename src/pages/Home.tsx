@@ -1,9 +1,20 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import type { MoviesResponse } from "../api/tmdb";
 import { tmdbService } from "../api/tmdb";
 import { MovieCard } from "../components/MovieCard";
 import { Container, Grid, LoadingSpinner } from "../styles/GlobalStyles";
+import {
+  LOADING_MESSAGE,
+  NO_MOVIES_MESSAGE,
+  PAGE_TITLE,
+  TEST_IDS,
+} from "./constants/home.constants";
+import {
+  getLoadMoreButtonText,
+  handleApiError,
+  shouldLoadMore,
+} from "./utils/home.utils";
 
 const fadeInUp = keyframes`
   from {
@@ -145,12 +156,13 @@ const HomeContainer = styled.div`
 //   }
 // `;
 
-export const Home: React.FC = () => {
+export function Home() {
   const [movies, setMovies] = useState<MoviesResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+
   const fetchMovies = useCallback(
     async (page: number = 1, append: boolean = false) => {
       try {
@@ -177,10 +189,7 @@ export const Home: React.FC = () => {
 
         setCurrentPage(page);
       } catch (err) {
-        console.error("Erro ao carregar filmes:", err);
-        setError(
-          "Erro ao carregar filmes. Verifique sua conexão e tente novamente."
-        );
+        setError(handleApiError(err));
       } finally {
         setLoading(false);
         setLoadingMore(false);
@@ -188,12 +197,13 @@ export const Home: React.FC = () => {
     },
     []
   );
+
   useEffect(() => {
     fetchMovies(1);
   }, [fetchMovies]);
 
   const handleLoadMore = () => {
-    if (movies && currentPage < movies.total_pages) {
+    if (shouldLoadMore(movies, currentPage)) {
       fetchMovies(currentPage + 1, true);
     }
   };
@@ -202,7 +212,7 @@ export const Home: React.FC = () => {
     return (
       <HomeContainer>
         <Container>
-          <LoadingSpinner>Carregando filmes em cartaz...</LoadingSpinner>
+          <LoadingSpinner>{LOADING_MESSAGE}</LoadingSpinner>
         </Container>
       </HomeContainer>
     );
@@ -221,32 +231,32 @@ export const Home: React.FC = () => {
   return (
     <HomeContainer>
       <Container>
-        <Title>Filmes em Cartaz</Title>
+        <Title>{PAGE_TITLE}</Title>
 
         {movies && (
           <>
-            <Grid data-testid="movies-grid">
+            <Grid data-testid={TEST_IDS.MOVIES_GRID}>
               {movies.results.map((movie) => (
                 <MovieCard key={movie.id} movie={movie} />
               ))}
             </Grid>
 
-            {currentPage < movies.total_pages && (
+            {shouldLoadMore(movies, currentPage) && (
               <LoadMoreButton
                 onClick={handleLoadMore}
                 disabled={loadingMore}
-                data-testid="load-more-button"
+                data-testid={TEST_IDS.LOAD_MORE_BUTTON}
               >
-                {loadingMore ? "Carregando..." : "Carregar Mais"}
+                {getLoadMoreButtonText(loadingMore)}
               </LoadMoreButton>
             )}
           </>
         )}
 
         {movies && movies.results.length === 0 && (
-          <ErrorMessage>Nenhum filme encontrado.</ErrorMessage>
+          <ErrorMessage>{NO_MOVIES_MESSAGE}</ErrorMessage>
         )}
       </Container>
     </HomeContainer>
   );
-};
+}
