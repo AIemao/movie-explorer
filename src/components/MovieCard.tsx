@@ -3,26 +3,20 @@ import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import type { Movie } from "../api/tmdb";
 import { IMAGE_BASE_URL } from "../api/tmdb";
+import {
+  FADE_IN_ANIMATION,
+  POSTER_ALT_TEXT,
+  SHIMMER_ANIMATION,
+} from "./constants/movieCard.constants";
+import {
+  buildPosterUrl,
+  formatRating,
+  formatReleaseDate,
+} from "./utils/movieCard.utils";
 
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: scale(1.05);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-`;
+const fadeIn = keyframes`${FADE_IN_ANIMATION}`;
 
-const shimmer = keyframes`
-  0% {
-    background-position: -468px 0;
-  }
-  100% {
-    background-position: 468px 0;
-  }
-`;
+const shimmer = keyframes`${SHIMMER_ANIMATION}`;
 
 const Card = styled(Link)`
   background-color: ${({ theme }) => theme.surface};
@@ -183,25 +177,13 @@ const QuickRating = styled.div`
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 `;
 
-interface MovieCardProps {
+type MovieCardProps = {
   movie: Movie;
-}
+};
 
-export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
+export function MovieCard({ movie }: MovieCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("pt-BR", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  };
-
-  const formatRating = (rating: number) => {
-    return Math.round(rating * 10) / 10;
-  };
 
   const handleImageLoad = () => {
     setImageLoaded(true);
@@ -211,15 +193,19 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
     setImageError(true);
   };
 
+  const posterUrl = buildPosterUrl(movie.poster_path, IMAGE_BASE_URL);
+  const formattedDate = formatReleaseDate(movie.release_date);
+  const formattedRating = formatRating(movie.vote_average);
+
   return (
     <Card to={`/movie/${movie.id}`} data-testid={`movie-card-${movie.id}`}>
       <PosterContainer>
-        {movie.poster_path && !imageError ? (
+        {posterUrl && !imageError ? (
           <>
             {!imageLoaded && <PosterPlaceholder>🎬</PosterPlaceholder>}
             <Poster
-              src={`${IMAGE_BASE_URL}${movie.poster_path}`}
-              alt={`Poster do filme ${movie.title}`}
+              src={posterUrl}
+              alt={`${POSTER_ALT_TEXT} ${movie.title}`}
               loading="lazy"
               $loaded={imageLoaded}
               onLoad={handleImageLoad}
@@ -228,7 +214,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
             <Overlay />
             <QuickInfo>
               <QuickTitle>{movie.title}</QuickTitle>
-              <QuickRating>⭐ {formatRating(movie.vote_average)}</QuickRating>
+              <QuickRating>⭐ {formattedRating}</QuickRating>
             </QuickInfo>
           </>
         ) : (
@@ -239,10 +225,10 @@ export const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
       <CardContent>
         <Title>{movie.title}</Title>
         <MovieInfo>
-          <ReleaseDate>{formatDate(movie.release_date)}</ReleaseDate>
-          <Rating>⭐ {formatRating(movie.vote_average)}</Rating>
+          <ReleaseDate>{formattedDate}</ReleaseDate>
+          <Rating>⭐ {formattedRating}</Rating>
         </MovieInfo>
       </CardContent>
     </Card>
   );
-};
+}

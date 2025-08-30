@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import {
+  APP_TITLE,
+  NAVIGATION_ITEMS,
+  THEME_TOGGLE_ARIA_LABEL,
+} from "./constants/header.constants";
+import { getThemeToggleIcon, getThemeToggleLabel } from "./utils/header.utils";
 
 const HeaderContainer = styled.header`
   background-color: ${({ theme }) => theme.surface};
@@ -62,24 +68,34 @@ const ThemeToggle = styled.button`
   }
 `;
 
-interface HeaderProps {
+type HeaderProps = {
   onThemeToggle: () => void;
   isDark: boolean;
-}
+};
 
-export const Header: React.FC<HeaderProps> = ({ onThemeToggle, isDark }) => {
+export function Header({ onThemeToggle, isDark }: HeaderProps) {
+  const themeLabel = getThemeToggleLabel(isDark);
+  const themeIcon = getThemeToggleIcon(isDark);
+
   return (
     <HeaderContainer>
       <HeaderContent>
-        <Logo to="/">🎬 Movie Explorer</Logo>
+        <Logo to="/">{APP_TITLE}</Logo>
         <Nav>
-          <NavLink to="/">Início</NavLink>
-          <NavLink to="/categories">Categorias</NavLink>
+          {NAVIGATION_ITEMS.map((item) => (
+            <NavLink key={item.path} to={item.path}>
+              {item.label}
+            </NavLink>
+          ))}
         </Nav>
-        <ThemeToggle onClick={onThemeToggle}>
-          {isDark ? "☀️ Claro" : "🌙 Escuro"}
+        <ThemeToggle
+          onClick={onThemeToggle}
+          aria-label={THEME_TOGGLE_ARIA_LABEL}
+          title={themeLabel}
+        >
+          {themeIcon} {isDark ? "Claro" : "Escuro"}
         </ThemeToggle>
       </HeaderContent>
     </HeaderContainer>
   );
-};
+}

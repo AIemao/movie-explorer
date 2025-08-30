@@ -1,10 +1,23 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import type { MoviesResponse } from "../api/tmdb";
 import { tmdbService } from "../api/tmdb";
 import { MovieCard } from "../components/MovieCard";
 import { Container, Grid, LoadingSpinner } from "../styles/GlobalStyles";
+import {
+  ARIA_LABELS,
+  BACK_BUTTON_TEXT,
+  TEST_IDS,
+} from "./constants/genrePage.constants";
+import {
+  getEmptyStateMessage,
+  getLoadMoreButtonText,
+  getLoadingMessage,
+  getPageTitle,
+  handleApiError,
+  shouldLoadMore,
+} from "./utils/genrePage.utils";
 
 const fadeInUp = keyframes`
   from {
@@ -175,7 +188,7 @@ const MoviesGrid = styled(Grid)`
   }
 `;
 
-export const GenrePage: React.FC = () => {
+export function GenrePage() {
   const { genreId, genreName } = useParams<{
     genreId: string;
     genreName: string;
@@ -186,6 +199,7 @@ export const GenrePage: React.FC = () => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+
   const fetchMoviesByGenre = useCallback(
     async (page: number = 1, append: boolean = false) => {
       if (!genreId) return;
@@ -214,13 +228,9 @@ export const GenrePage: React.FC = () => {
         } else {
           setMovies(response);
         }
-
         setCurrentPage(page);
       } catch (err) {
-        console.error("Erro ao carregar filmes por gênero:", err);
-        setError(
-          "Erro ao carregar filmes. Verifique sua conexão e tente novamente."
-        );
+        setError(handleApiError(err));
       } finally {
         setLoading(false);
         setLoadingMore(false);
@@ -228,6 +238,7 @@ export const GenrePage: React.FC = () => {
     },
     [genreId]
   );
+
   useEffect(() => {
     if (genreId) {
       fetchMoviesByGenre(1);
@@ -235,16 +246,20 @@ export const GenrePage: React.FC = () => {
   }, [genreId, fetchMoviesByGenre]);
 
   const handleLoadMore = () => {
-    if (movies && currentPage < movies.total_pages) {
+    if (shouldLoadMore(movies, currentPage)) {
       fetchMoviesByGenre(currentPage + 1, true);
     }
+  };
+
+  const handleGoBack = () => {
+    navigate(-1);
   };
 
   if (loading) {
     return (
       <GenrePageContainer>
         <Container>
-          <LoadingSpinner>Carregando filmes de {genreName}...</LoadingSpinner>
+          <LoadingSpinner>{getLoadingMessage(genreName)}</LoadingSpinner>
         </Container>
       </GenrePageContainer>
     );
@@ -254,7 +269,13 @@ export const GenrePage: React.FC = () => {
     return (
       <GenrePageContainer>
         <Container>
-          <BackButton onClick={() => navigate(-1)}>← Voltar</BackButton>
+          <BackButton
+            onClick={handleGoBack}
+            aria-label={ARIA_LABELS.BACK_BUTTON}
+            data-testid={TEST_IDS.BACK_BUTTON}
+          >
+            {BACK_BUTTON_TEXT}
+          </BackButton>
           <ErrorMessage>{error}</ErrorMessage>
         </Container>
       </GenrePageContainer>
@@ -264,36 +285,41 @@ export const GenrePage: React.FC = () => {
   return (
     <GenrePageContainer>
       <Container>
-        <BackButton onClick={() => navigate(-1)}>← Voltar</BackButton>
+        <BackButton
+          onClick={handleGoBack}
+          aria-label={ARIA_LABELS.BACK_BUTTON}
+          data-testid={TEST_IDS.BACK_BUTTON}
+        >
+          {BACK_BUTTON_TEXT}
+        </BackButton>
 
-        <PageTitle>Filmes de {genreName}</PageTitle>
+        <PageTitle>{getPageTitle(genreName)}</PageTitle>
 
         {movies && (
           <>
-            <MoviesGrid data-testid="genre-movies-grid">
+            <MoviesGrid data-testid={TEST_IDS.GENRE_MOVIES_GRID}>
               {movies.results.map((movie) => (
                 <MovieCard key={movie.id} movie={movie} />
               ))}
             </MoviesGrid>
 
-            {currentPage < movies.total_pages && (
+            {shouldLoadMore(movies, currentPage) && (
               <LoadMoreButton
                 onClick={handleLoadMore}
                 disabled={loadingMore}
-                data-testid="load-more-button"
+                data-testid={TEST_IDS.LOAD_MORE_BUTTON}
+                aria-label={ARIA_LABELS.LOAD_MORE_BUTTON}
               >
-                {loadingMore ? "Carregando..." : "Carregar Mais"}
+                {getLoadMoreButtonText(loadingMore)}
               </LoadMoreButton>
             )}
           </>
         )}
 
         {movies && movies.results.length === 0 && (
-          <ErrorMessage>
-            Nenhum filme encontrado para o gênero {genreName}.
-          </ErrorMessage>
+          <ErrorMessage>{getEmptyStateMessage(genreName)}</ErrorMessage>
         )}
       </Container>
     </GenrePageContainer>
   );
-};
+}
