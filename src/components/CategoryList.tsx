@@ -25,12 +25,12 @@ const CategoryButtons = styled.div`
   margin-bottom: 2rem;
 `;
 
-const CategoryButton = styled.button<{ active: boolean }>`
+const CategoryButton = styled.button<{ $active: boolean }>`
   padding: 0.5rem 1rem;
   border-radius: 20px;
-  background-color: ${({ active, theme }) =>
-    active ? theme.primary : "transparent"};
-  color: ${({ active, theme }) => (active ? "white" : theme.text)};
+  background-color: ${({ $active, theme }) =>
+    $active ? theme.primary : "transparent"};
+  color: ${({ $active, theme }) => ($active ? "white" : theme.text)};
   border: 2px solid ${({ theme }) => theme.primary};
   cursor: pointer;
   transition: all 0.3s ease;
@@ -96,13 +96,12 @@ export function CategoryList() {
 
   return (
     <Container>
-      <Title>Explorar por Categorias</Title>
-
+      <Title>Explorar por Categorias</Title>{" "}
       <CategoryButtons>
         {genres.map((genre) => (
           <CategoryButton
             key={genre.id}
-            active={selectedGenre === genre.id}
+            $active={selectedGenre === genre.id}
             onClick={() => handleGenreClick(genre.id)}
             data-testid={`${TEST_IDS.CATEGORY_CARD}-${genre.id}`}
           >
@@ -110,13 +109,10 @@ export function CategoryList() {
           </CategoryButton>
         ))}
       </CategoryButtons>
-
       {loading && selectedGenre && (
         <LoadingSpinner>Carregando filmes...</LoadingSpinner>
       )}
-
       {error && selectedGenre && <ErrorMessage>{error}</ErrorMessage>}
-
       {movies && (
         <Grid data-testid={TEST_IDS.CATEGORIES_GRID}>
           {movies.results.map((movie) => (
@@ -124,7 +120,6 @@ export function CategoryList() {
           ))}
         </Grid>
       )}
-
       {selectedGenre && movies && movies.results.length === 0 && !loading && (
         <ErrorMessage>
           Nenhum filme encontrado para esta categoria.

@@ -22,7 +22,7 @@ const tmdbApi = axios.create({
 });
 
 // Tipos para as respostas da API
-export interface Movie {
+export type Movie = {
     id: number;
     title: string;
     overview: string;
@@ -33,23 +33,23 @@ export interface Movie {
     genre_ids: number[];
 }
 
-export interface MoviesResponse {
+export type MoviesResponse = {
     page: number;
     results: Movie[];
     total_pages: number;
     total_results: number;
 }
 
-export interface Genre {
+export type Genre = {
     id: number;
     name: string;
 }
 
-export interface GenresResponse {
+export type GenresResponse = {
     genres: Genre[];
 }
 
-export interface MovieDetails extends Movie {
+export type MovieDetails = Movie & {
     genres: Genre[];
     runtime: number;
     production_companies: Array<{
