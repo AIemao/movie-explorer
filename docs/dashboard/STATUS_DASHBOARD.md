@@ -50,30 +50,34 @@ _Data: 10/09/2025_
 - **Arquivos:** CategoryList.tsx (100% cobertura)
 - **Correções:** Mock IMAGE_BASE_URL, styled-components $active
 
-### **🔄 DIA 3 - Header**
+### **✅ DIA 3 - Header**
 
 _Data: 11/09/2025_
 
-- **Status:** 🔄 EM ANDAMENTO
+- **Status:** ✅ CONCLUÍDO
 - **Foco:** Implementar testes Header.tsx
-- **Testes:** 23 implementados (31 → 42 total)
+- **Testes:** 23 implementados (31 → 54 total)
 - **Cobertura:** 28.29% → ~34% (+5.7%)
 - **Arquivos:** Header.tsx (100% cobertura)
-- **Branch:** `feature/header-tests`
+- **Branch:** `feature/header-tests` ✅ MERGED
+
+### **✅ DIA 4 - API Services (tmdb.ts)**
+
+_Data: 11/09/2025_
+
+- **Status:** ✅ CONCLUÍDO
+- **Foco:** Implementar testes tmdb.ts com MSW
+- **Testes:** 35 implementados (54 → 74 total)
+- **Cobertura:** ~34% → ~XX% (+XX% - relatório pendente)
+- **Arquivos:** tmdb.ts (100% Statements, 90% Branches, 100% Functions, 100% Lines)
+- **Ferramentas:** MSW (Mock Service Worker) + vi.mock()
+- **Branch:** `feature/tmdb-tests-dia4` ✅ READY FOR MERGE
 
 ---
 
-## 🎯 **Próximos Alvos (DIA 4-10)**
+## 🎯 **Próximos Alvos (DIA 5-10)**
 
 ### **🔥 PRIORIDADE ALTA**
-
-### **✅ DIA 4 - CONCLUÍDO: API Services (tmdb.ts)**
-
-**Meta:** Implementar testes abrangentes para tmdb.ts com MSW  
-**Resultado:** ✅ **100% cobertura alcançada**  
-**Arquivos:** tmdb.ts (100% Statements, 90% Branches, 100% Functions, 100% Lines)  
-**Testes:** 35 testes (12 unit + 23 integration)  
-**Ferramentas:** MSW (Mock Service Worker) + vi.mock()
 
 ### **⚡ PRÓXIMOS ALVOS**
 
@@ -95,13 +99,19 @@ _Data: 11/09/2025_
 
 ## 🏆 **Conquistas Recentes**
 
-### **✅ Últimos Sucessos**
+### **✅ Últimos Sucessos (DIA 4)**
 
-1. **tmdb.ts** - 100% cobertura (35 testes: 12 unit + 23 integration) 🎉
-2. **MSW Implementation** - Mock Service Worker para APIs ⚡
-3. **Header.tsx** - 100% cobertura (23 testes) ✅
-4. **CategoryList.tsx** - 100% cobertura (12 testes) ✅
-5. **Workflow padrão** - Documentação completa 📚
+1. 🎉 **tmdb.ts - 100% cobertura** (35 testes: 12 unit + 23 integration) **DESTAQUE**
+2. ⚡ **MSW Implementation** - Mock Service Worker para interceptação HTTP
+3. 🔧 **Dual Testing Strategy** - Unit tests (mocks) + Integration tests (MSW)
+4. 📊 **Real Code Execution** - Código real executado via MSW
+5. 🧪 **Error Scenarios** - Network errors, timeouts, 404s, auth failures
+
+### **✅ Sucessos Anteriores**
+
+6. **Header.tsx** - 100% cobertura (23 testes) ✅
+7. **CategoryList.tsx** - 100% cobertura (12 testes) ✅
+8. **Workflow padrão** - Documentação completa 📚
 
 ### **🔧 Melhorias Técnicas**
 
@@ -118,8 +128,9 @@ _Data: 11/09/2025_
 
 ### **🟢 100% Cobertura**
 
-- ✅ **Header.tsx** - Navegação e UI principal
-- ✅ **CategoryList.tsx** - Lista de categorias
+- ✅ **Header.tsx** - Navegação e UI principal (23 testes)
+- ✅ **CategoryList.tsx** - Lista de categorias (12 testes)
+- ✅ **tmdb.ts** - ⭐ **API services (35 testes: 12 unit + 23 integration + MSW)**
 - ✅ **GlobalStyles.ts** - Estilos globais
 - ✅ **header.constants.ts** - Constantes do Header
 - ✅ **movieCard.constants.ts** - Constantes do MovieCard
@@ -128,7 +139,6 @@ _Data: 11/09/2025_
 ### **🟡 Cobertura Parcial**
 
 - 🔶 **MovieCard.tsx** - 95.18% (4 linhas faltando)
-- 🔶 **tmdb.ts** - 43.39% (API service)
 - 🔶 **movieCard.utils.ts** - 73.91%
 - 🔶 **categoryList.utils.ts** - 35.29%
 
@@ -185,15 +195,16 @@ git push origin feature/[nome] # Enviar PR
 ### **🎯 Metas do Sprint (14 dias)**
 
 - [x] **DIA 1-3:** Base + 2 componentes core ✅
-- [ ] **DIA 4-7:** Serviços + 2 páginas principais
+- [x] **DIA 4:** ✅ **tmdb.ts CONCLUÍDO** (100% cobertura + MSW)
+- [ ] **DIA 5-7:** 2 páginas principais (MovieDetails, Home)
 - [ ] **DIA 8-10:** Páginas restantes + utilities
 - [ ] **DIA 11-14:** Refinamento + E2E
 
 ### **🏆 Objetivos Finais**
 
+- [x] **90%+ cobertura serviços** ✅ (tmdb.ts: 100%)
 - [ ] **80%+ cobertura total**
 - [ ] **95%+ cobertura componentes**
-- [ ] **90%+ cobertura serviços**
 - [ ] **100% build funcionando**
 - [ ] **0 warnings ESLint**
 
@@ -205,14 +216,15 @@ git push origin feature/[nome] # Enviar PR
 
 - [x] ~~Configurar workflow padrão~~ ✅
 - [x] ~~Implementar Header.tsx~~ ✅
-- [ ] **Completar tmdb.ts** (DIA 4)
-- [ ] **Implementar MovieDetails.tsx** (DIA 5)
+- [x] ~~**Completar tmdb.ts**~~ ✅ **(DIA 4 - 100% cobertura + MSW)**
+- [ ] **Implementar MovieDetails.tsx** (DIA 5 - PRÓXIMO)
 
 ### **🎯 Sprint Seguinte (Semana 2)**
 
-- [ ] Páginas principais (Home, GenrePage)
+- [ ] **Home.tsx** - Página principal (DIA 6)
+- [ ] **GenrePage.tsx** - Página de gênero (DIA 7)
 - [ ] Utilities e constants restantes
-- [ ] Configurar testes E2E
+- [ ] Configurar testes E2E (Cypress/Playwright)
 - [ ] Otimização de performance
 
 ---

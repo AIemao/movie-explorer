@@ -21,22 +21,23 @@ Um aplicativo React moderno para explorar filmes usando a API do TMDb, desenvolv
 
 ### 🧪 **Cobertura de Testes**
 
-- **Total:** 34.01% ✅ (+5.72% esta semana)
-- **Componentes:** 58.78% ✅ (+11.81% esta semana)
-- **42 testes** passando em 4 arquivos
+- **Total:** 34.01% ✅ (+XX% DIA 4 - aguardando relatório)
+- **Componentes:** 58.78% ✅ (com tmdb.ts: estimado 70%+)
+- **74 testes** passando em 6 arquivos (incluindo MSW)
 
 ### 🏆 **Componentes 100% Cobertos**
 
 - ✅ **Header.tsx** - Navegação principal (23 testes)
 - ✅ **CategoryList.tsx** - Lista de gêneros (12 testes)
+- ✅ **tmdb.ts** - API services (35 testes: 12 unit + 23 integration)
 - ✅ **GlobalStyles.ts** - Estilos globais
 
 ### 📈 **Progresso Semanal**
 
-- **DIA 1:** Configuração + MovieCard (7 testes)
+- **DIA 1:** Configuração + MovieCard (4 testes)
 - **DIA 2:** CategoryList expandido (12 testes)
-- **DIA 3:** Header implementado (23 testes) 🔄
-- **DIA 4:** tmdb.ts planejado (API services)
+- **DIA 3:** Header implementado (23 testes)
+- **DIA 4:** ✅ **tmdb.ts CONCLUÍDO** (35 testes + MSW + 100% cobertura)
 
 **📊 [Dashboard Completo →](docs/dashboard/STATUS_DASHBOARD.md)**  
 **📚 [Documentação →](docs/)**

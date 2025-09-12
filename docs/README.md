@@ -116,7 +116,7 @@ git push origin feature/[nome] # Enviar PR
 
 ## 📈 **Próximos Passos**
 
-1. **DIA 4:** Completar testes `tmdb.ts` (43% → 90%)
+1. **DIA 4:** ✅ **CONCLUÍDO** - testes `tmdb.ts` (43% → 100% com MSW)
 2. **DIA 5:** Implementar testes `MovieDetails.tsx`
 3. **DIA 6:** Implementar testes `Home.tsx`
 4. **Configurar E2E:** Playwright ou Cypress
