@@ -2,6 +2,72 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 
+## [1.0.1] - 2025-09-11 - 🎯 DIA 2 - Workflow Padrão Implementado
+
+### ✅ **DIA 2 - FINALIZADO**
+
+#### 🧪 **Expansão Completa de Testes CategoryList**
+
+- **12 testes implementados** para CategoryList.tsx com 100% de cobertura
+- **Correções críticas** em mocks e styled-components
+- **19 testes totais** passando (100% de sucesso)
+- **Tratamento robusto de erros** e estados de loading
+- **Integração validada** entre CategoryList e MovieCard
+- **Acessibilidade** verificada e testada
+
+#### 🔧 **Correções Técnicas Implementadas**
+
+- **Mock completo do IMAGE_BASE_URL** no módulo tmdb
+- **Propriedade `$active`** corrigida no styled-components (eliminação de warnings React)
+- **Textos de loading/erro** ajustados às constantes reais dos componentes
+- **Tratamento de múltiplos elementos** DOM usando `getAllByText()`
+- **Mocks de dados completos** com todos os campos obrigatórios (backdrop_path, etc.)
+
+#### 📊 **Cobertura Atualizada**
+
+- **CategoryList.tsx:** 100% de cobertura (94.44% branches)
+- **MovieCard.tsx:** 95.18% de cobertura (mantido)
+- **TMDb API:** 43.39% de cobertura (mantido)
+- **Cobertura Total:** 28.29% (aumento significativo)
+
+#### 🔄 **Workflow Padrão Estabelecido**
+
+- **8 etapas definidas** para desenvolvimento diário orientado por testes
+- **Bateria de validação** padronizada (build, lint, tests, preview, dev)
+- **Critérios de priorização** objetivos para próximos alvos
+- **Templates de documentação** para relatórios e commits
+- **Processo git/branch** estruturado para isolamento de features
+
+#### 📋 **Documentação Criada**
+
+- **DAILY_TEST_BATTERY_REPORT.md** - Relatório detalhado da bateria DIA 2
+- **DAILY_WORKFLOW_STANDARD.md** - Processo padrão para desenvolvimento diário
+- **TESTE_IMPROVEMENTS.md** - Atualizado com melhorias do CategoryList
+
+#### 🎯 **Priorização Estabelecida para Próximos Dias**
+
+1. **DIA 3:** Header.tsx (navegação e UI principal)
+2. **DIA 4:** tmdb.ts (serviços de API restantes)
+3. **DIA 5:** MovieDetails.tsx (página de detalhes)
+4. **DIA 6:** Home.tsx (página inicial)
+5. **DIA 7:** GenrePage.tsx (filtragem por gênero)
+
+#### ⚙️ **Scripts Validados**
+
+- ✅ `npm run build` - 307KB bundle otimizado
+- ✅ `npm run lint` - 0 warnings/errors
+- ✅ `npm run test:coverage` - 19/19 testes (100%)
+- ✅ `npm run preview` - Preview funcionando (localhost:4173)
+- ✅ `npm run dev` - Dev server rápido (705ms)
+
+### 🏆 **Conquistas do DIA 2**
+
+- **Qualidade garantida:** Todos os testes passando com cobertura completa
+- **Processo padronizado:** Workflow definido para escalabilidade
+- **Base sólida:** CategoryList totalmente coberto e validado
+- **Documentação viva:** Relatórios e templates criados
+- **Próximos passos claros:** Roadmap de 5 dias estabelecido
+
 ## [1.0.0] - 2025-01-23 - 🎬 Movie Explorer Completo
 
 ### ✅ **DIA 1 - FINALIZADO**
