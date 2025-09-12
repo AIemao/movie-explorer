@@ -7,14 +7,16 @@ Este documento mantém o registro completo de todos os dias de desenvolvimento o
 ## 📋 **Relatórios por Dia**
 
 ### **🎯 DIA 1** - Configuração e Base Inicial
+
 **Status:** ✅ Concluído  
 **Arquivo:** [Documentado no CHANGELOG.md](CHANGELOG.md)  
 **Objetivos:** Configuração inicial, primeiros testes  
-**Resultados:** 7 testes implementados, ambiente configurado  
+**Resultados:** 7 testes implementados, ambiente configurado
 
 ---
 
 ### **🧪 DIA 2** - Expansão CategoryList
+
 **Status:** ✅ Concluído  
 **Arquivo:** [`DAILY_TEST_BATTERY_REPORT_DIA2.md`](DAILY_TEST_BATTERY_REPORT_DIA2.md)  
 **Data:** 11 de setembro de 2025  
@@ -22,18 +24,21 @@ Este documento mantém o registro completo de todos os dias de desenvolvimento o
 **Commit:** 71f60f4
 
 **Objetivos Alcançados:**
+
 - ✅ CategoryList.tsx - 100% cobertura (12 testes)
 - ✅ Correções técnicas importantes
 - ✅ Processo workflow estabelecido
 
 **Métricas:**
+
 - **Testes:** 7 → 19 (+12 novos)
 - **Cobertura CategoryList:** 0% → 100%
 - **Arquivos testados:** 3
 
 ---
 
-### **🎬 DIA 3** - Header.tsx 
+### **🎬 DIA 3** - Header.tsx
+
 **Status:** 🔄 Em Desenvolvimento  
 **Arquivo:** [`DAILY_TEST_BATTERY_REPORT_DIA3.md`](DAILY_TEST_BATTERY_REPORT_DIA3.md)  
 **Data:** 11 de setembro de 2025  
@@ -41,11 +46,13 @@ Este documento mantém o registro completo de todos os dias de desenvolvimento o
 **Commit:** [Pendente]
 
 **Objetivos:**
+
 - 🎯 Header.tsx - Meta 100% cobertura
 - 🎯 23 testes implementados
 - 🎯 Seguir rigorosamente DAILY_WORKFLOW_STANDARD
 
 **Progresso Atual:**
+
 - ✅ Análise e priorização concluída
 - ✅ Branch feature/header-tests criada
 - ✅ 23 testes implementados
@@ -54,30 +61,46 @@ Este documento mantém o registro completo de todos os dias de desenvolvimento o
 - ⏳ Documentação e PR pendentes
 
 **Métricas Esperadas:**
+
 - **Testes:** 19 → 42 (+23 novos)
 - **Cobertura Header:** 0% → 100%
 - **Cobertura Geral:** 28.29% → ~34%
 
 ---
 
-### **📊 DIA 4** - tmdb.ts (Planejado)
-**Status:** 📋 Planejado  
-**Arquivo:** [A ser criado]  
-**Branch:** feature/tmdb-api-tests  
+### **🔧 DIA 4** - tmdb.ts API Services
 
-**Objetivos Planejados:**
-- 🎯 Completar tmdb.ts (43.39% → ≥90%)
-- 🎯 8-10 novos testes de API
-- 🎯 Foco em serviços críticos
+**Status:** ✅ Concluído  
+**Arquivo:** [`DAILY_TEST_BATTERY_REPORT_DIA4.md`](DAILY_TEST_BATTERY_REPORT_DIA4.md)  
+**Data:** 11 de setembro de 2025  
+**Branch:** feature/tmdb-tests-dia4
+
+**Objetivos Alcançados:**
+
+- ✅ tmdb.ts - 100% cobertura (35 testes: 12 unit + 23 integration)
+- ✅ MSW (Mock Service Worker) implementado
+- ✅ Estratégia dual de testes (unit + integration)
+- ✅ Templates de PR criados
+- ✅ Validação completa (testes + lint + build)
+
+**Métricas:**
+
+- **Testes:** 42 → 74 (+32 novos)
+- **Cobertura tmdb.ts:** 43.39% → 100%
+- **Arquivos de teste:** 4 → 6
+
+**📋 Issue:** [Resumo Executivo DIA 4](issue/RESUMO_EXECUTIVO_DIA4.md)
 
 ---
 
 ### **🎭 DIA 5** - MovieDetails.tsx (Planejado)
+
 **Status:** 📋 Planejado  
 **Arquivo:** [A ser criado]  
-**Branch:** feature/movie-details-tests  
+**Branch:** feature/movie-details-tests
 
 **Objetivos Planejados:**
+
 - 🎯 MovieDetails.tsx - Meta ≥85%
 - 🎯 12-15 testes implementados
 - 🎯 Componente de página principal
@@ -87,6 +110,7 @@ Este documento mantém o registro completo de todos os dias de desenvolvimento o
 ## 📈 **Progresso Geral do Projeto**
 
 ### **Evolução da Cobertura:**
+
 ```
 DIA 1: ~20% (base inicial)
 DIA 2: 28.29% (+8.29%)
@@ -96,6 +120,7 @@ DIA 5: [planejado]
 ```
 
 ### **Evolução dos Testes:**
+
 ```
 DIA 1: 7 testes
 DIA 2: 19 testes (+12)
@@ -105,6 +130,7 @@ DIA 5: [planejado]
 ```
 
 ### **Componentes Cobertos:**
+
 - ✅ **CategoryList.tsx** - 100% (DIA 2)
 - ✅ **MovieCard.tsx** - 95.18% (DIA 1)
 - ✅ **GlobalStyles.ts** - 100% (DIA 1)
@@ -116,10 +142,11 @@ DIA 5: [planejado]
 ## 🎯 **Filosofia e Padrões**
 
 ### **Workflow Estabelecido:**
+
 Seguimos rigorosamente o [`DAILY_WORKFLOW_STANDARD.md`](DAILY_WORKFLOW_STANDARD.md) com 8 etapas:
 
 1. 🧪 Bateria de Testes Inicial
-2. 📊 Análise de Cobertura  
+2. 📊 Análise de Cobertura
 3. 🎯 Priorização de Arquivos
 4. 🔍 Verificação Git/Branch
 5. 🌿 Criação de Nova Branch
@@ -128,12 +155,14 @@ Seguimos rigorosamente o [`DAILY_WORKFLOW_STANDARD.md`](DAILY_WORKFLOW_STANDARD.
 8. 📝 Documentação e PR
 
 ### **Metas de Cobertura:**
+
 - **Componentes:** ≥ 95%
 - **Serviços:** ≥ 90%
 - **Utilities:** ≥ 95%
 - **Pages:** ≥ 85%
 
 ### **Estrutura Padrão de Testes:**
+
 ```javascript
 describe("[ComponentName]", () => {
   describe("Rendering and Initial State", () => {});
@@ -147,12 +176,26 @@ describe("[ComponentName]", () => {
 
 ---
 
+## 📋 **Resumos Executivos de Issues**
+
+Os resumos executivos servem como **encerramentos formais** das issues/tarefas:
+
+| DIA   | Issue                               | Status       | Resumo Executivo                                           |
+| ----- | ----------------------------------- | ------------ | ---------------------------------------------------------- |
+| **4** | Implementar testes tmdb.ts com MSW  | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA4.md](issue/RESUMO_EXECUTIVO_DIA4.md) |
+| **5** | Implementar testes MovieDetails.tsx | 🔄 PENDENTE  | -                                                          |
+
+**📋 [Ver todos os resumos →](issue/README.md)**
+
+---
+
 ## 📚 **Documentação Relacionada**
 
-- [`DAILY_WORKFLOW_STANDARD.md`](DAILY_WORKFLOW_STANDARD.md) - Processo padrão
-- [`CHANGELOG.md`](CHANGELOG.md) - Histórico geral do projeto
-- [`TESTE_IMPROVEMENTS.md`](TESTE_IMPROVEMENTS.md) - Melhorias nos testes
-- [`README.md`](README.md) - Documentação principal
+- [`DAILY_WORKFLOW_STANDARD.md`](../../workflow/DAILY_WORKFLOW_STANDARD.md) - Processo padrão
+- [`CHANGELOG.md`](../../../CHANGELOG.md) - Histórico geral do projeto
+- [`TESTE_IMPROVEMENTS.md`](../improvements/TESTE_IMPROVEMENTS.md) - Melhorias nos testes
+- [`README.md`](../../../README.md) - Documentação principal
+- [`STATUS_DASHBOARD.md`](../../dashboard/STATUS_DASHBOARD.md) - Dashboard do projeto
 
 ---
 
@@ -161,8 +204,9 @@ describe("[ComponentName]", () => {
 > **"Cada linha de código deve ser testada. Cada teste deve ter propósito. Cada dia deve agregar valor."**
 
 **Princípios:**
+
 - ✅ **Qualidade primeiro:** Testes antes de features
-- ✅ **Incremento diário:** Um arquivo/componente por dia  
+- ✅ **Incremento diário:** Um arquivo/componente por dia
 - ✅ **Validação contínua:** Bateria completa a cada ciclo
 - ✅ **Documentação viva:** Registro de cada decisão e resultado
 

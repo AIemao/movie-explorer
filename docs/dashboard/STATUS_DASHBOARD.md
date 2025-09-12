@@ -72,6 +72,7 @@ _Data: 11/09/2025_
 - **Arquivos:** tmdb.ts (100% Statements, 90% Branches, 100% Functions, 100% Lines)
 - **Ferramentas:** MSW (Mock Service Worker) + vi.mock()
 - **Branch:** `feature/tmdb-tests-dia4` ✅ READY FOR MERGE
+- **📋 Issue:** [Resumo Executivo](../reports/daily/issue/RESUMO_EXECUTIVO_DIA4.md)
 
 ---
 

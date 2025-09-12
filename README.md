@@ -160,6 +160,7 @@ Workflow automatizado configurado:
 | **📊 Dashboard**  | Status completo do projeto         | [Ver →](docs/dashboard/STATUS_DASHBOARD.md)       |
 | **🔄 Workflow**   | Processo diário de desenvolvimento | [Ver →](docs/workflow/DAILY_WORKFLOW_STANDARD.md) |
 | **📈 Relatórios** | Histórico de progresso por dia     | [Ver →](docs/reports/)                            |
+| **📋 Issues**     | Resumos executivos de encerramento | [Ver →](docs/reports/daily/issue/)                |
 | **🤝 Contribuir** | Guia para contribuições            | [Ver →](CONTRIBUTING.md)                          |
 
 ## 🏆 Créditos

@@ -31,6 +31,11 @@ Checklist para configuração de CI/CD e melhores práticas do GitHub.
 - **[Índice de Relatórios](reports/daily/DAILY_TEST_BATTERY_INDEX.md)** - Lista completa de todos os dias
 - **[DIA 2 - CategoryList](reports/daily/DAILY_TEST_BATTERY_REPORT_DIA2.md)** - Expansão testes CategoryList
 - **[DIA 3 - Header](reports/daily/DAILY_TEST_BATTERY_REPORT_DIA3.md)** - Implementação testes Header.tsx
+- **[DIA 4 - TMDb API](reports/daily/DAILY_TEST_BATTERY_REPORT_DIA4.md)** - Implementação testes tmdb.ts com MSW
+
+### **📋 Resumos Executivos (Issues)**
+
+- **[DIA 4 - Encerramento](reports/daily/issue/RESUMO_EXECUTIVO_DIA4.md)** - Encerramento formal da issue tmdb.ts
 
 ### **🚀 Melhorias e Padrões**
 

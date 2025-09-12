@@ -87,6 +87,14 @@ npm run test:coverage
 - [ ] Linting passou (`npm run lint`)
 - [ ] Documentação atualizada se necessário
 - [ ] Mensagens de commit seguem o padrão
+- [ ] Resumo executivo criado em `docs/reports/daily/issue/` (se aplicável)
+
+## 📋 Resumos Executivos
+
+Para issues/tarefas importantes, crie um resumo executivo em:
+`docs/reports/daily/issue/RESUMO_EXECUTIVO_DIAX.md`
+
+**Template:** [Ver exemplo →](docs/reports/daily/issue/README.md)
 
 ## 🎯 Áreas que Precisam de Ajuda
 

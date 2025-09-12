@@ -209,7 +209,16 @@ Implementar testes abrangentes para [NomeDoArquivo]
 - [x] Performance mantida
 ```
 
-**B. Enviar PR:**
+**B. Criar Resumo Executivo (se aplicável):**
+
+Para tasks/issues importantes, criar resumo executivo:
+
+```bash
+# Criar arquivo em docs/reports/daily/issue/
+# Seguir template em docs/reports/daily/issue/README.md
+```
+
+**C. Enviar PR:**
 
 ```bash
 git add .
@@ -217,12 +226,13 @@ git commit -m "feat(tests): Implementar testes para [NomeDoArquivo] com X% de co
 git push origin feature/[nome-da-branch]
 ```
 
-**C. Avaliar e Mergear:**
+**D. Avaliar e Mergear:**
 
 - [ ] Revisão automática (CI/CD)
 - [ ] Revisão manual se necessário
 - [ ] Merge para main
 - [ ] Deletar branch feature
+- [ ] Atualizar documentação central
 
 ---
 

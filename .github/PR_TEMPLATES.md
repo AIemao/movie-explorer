@@ -126,16 +126,18 @@ npm test -- --run --reporter=verbose
 - [ ] README.md atualizado com instruções de teste
 - [ ] CONTRIBUTING.md com padrões de teste
 - [ ] Comentários no código explicando lógica complexa
+- [ ] Resumo Executivo criado em `docs/reports/daily/issue/`
 
 ---
 
 **Reviewer Guidelines:**
 
 1. Verificar se todos os testes passam
-2. Validar cobertura atingiu meta (100%)
+2. Validar cobertura atingiu meta (85-100%)
 3. Confirmar que testes são determinísticos
 4. Checar se mocks estão bem implementados
 5. Testar cenários de erro manualmente se necessário
+6. Confirmar se resumo executivo da issue foi criado
 ````
 
 ## Template para Testes de API
