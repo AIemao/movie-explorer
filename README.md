@@ -14,7 +14,7 @@ Um aplicativo React moderno para explorar filmes usando a API do TMDb, desenvolv
 
 **Frontend:** React 18 + TypeScript + Styled Components  
 **Build:** Vite + ESLint + Prettier  
-**Testes:** Vitest + Testing Library + Coverage v8  
+**Testes:** Vitest + Testing Library + MSW + Coverage v8  
 **API:** TMDb (The Movie Database)
 
 ## 📊 Status do Projeto
@@ -96,9 +96,10 @@ npm run coverage:analyze       # Relatório personalizado
 Este projeto segue **TDD rigoroso** com workflow diário estruturado:
 
 ✅ **Componentes isolados** com props bem definidas  
-✅ **Mocks robustos** para APIs e dependências  
+✅ **MSW (Mock Service Worker)** para APIs  
+✅ **Mocks robustos** para dependências externas  
 ✅ **Testes de acessibilidade** com ARIA labels  
-✅ **Cobertura progressiva** - 1 arquivo por dia
+✅ **Cobertura progressiva** - meta 85-100% por arquivo
 
 **📋 [Ver Workflow Completo →](docs/workflow/DAILY_WORKFLOW_STANDARD.md)**
 
@@ -109,15 +110,17 @@ Este projeto segue **TDD rigoroso** com workflow diário estruturado:
 ```
 src/test/
 ├── components/   # Header, CategoryList, MovieCard
-├── api/         # TMDb services
+├── api/         # TMDb services (Unit + Integration)
+├── mocks/       # MSW handlers para HTTP
 ├── pages/       # Home, MovieDetails (planejado)
-└── setup.ts     # Configuração global
+├── setup.ts     # Configuração global Vitest
+└── msw-setup.ts # Configuração Mock Service Worker
 ```
 
 ### **Próximos Alvos**
 
-1. **tmdb.ts** - Completar API services (43% → 90%)
-2. **MovieDetails.tsx** - Página de detalhes (0% → 95%)
+1. **tmdb.ts** - ✅ **CONCLUÍDO** (43% → 100% com MSW)
+2. **MovieDetails.tsx** - Página de detalhes (0% → 85%+)
 3. **E2E Tests** - Playwright/Cypress
 
 ### **Como Contribuir**

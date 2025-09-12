@@ -4,11 +4,10 @@ import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react()],
-    test: {
+    plugins: [react()], test: {
         globals: true,
         environment: 'jsdom',
-        setupFiles: ['./src/test/setup.ts'],
+        setupFiles: ['./src/test/setup.ts', './src/test/msw-setup.ts'],
         css: true,
         reporters: ['verbose'],
         coverage: {
