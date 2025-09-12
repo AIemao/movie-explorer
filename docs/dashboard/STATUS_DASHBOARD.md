@@ -1,7 +1,7 @@
 # 📊 Status Dashboard - Movie Explorer
 
 **Última Atualização:** 11 de setembro de 2025  
-**Branch Ativa:** feature/header-tests  
+**Branch Ativa:** feature/tmdb-tests-dia4  
 **Workflow:** [DAILY_WORKFLOW_STANDARD](../workflow/DAILY_WORKFLOW_STANDARD.md)
 
 ---
@@ -10,19 +10,20 @@
 
 ### **📈 Cobertura de Testes**
 
-| Métrica             | Valor Atual | Meta | Status               |
-| ------------------- | ----------- | ---- | -------------------- |
-| **Cobertura Total** | **~34%**    | 80%  | 🟡 Em progresso      |
-| **Componentes**     | **~59%**    | 95%  | 🟡 Em progresso      |
-| **Serviços**        | **43%**     | 90%  | 🔴 Necessita atenção |
-| **Utilities**       | **~75%**    | 95%  | 🟡 Em progresso      |
+| Métrica             | Valor Atual | Meta    | Status           |
+| ------------------- | ----------- | ------- | ---------------- |
+| **Cobertura Total** | **~60%**    | 85-100% | 🟢 Melhorado     |
+| **Componentes**     | **~95%**    | 85-100% | 🟢 Excelente     |
+| **Serviços (API)**  | **100%**    | 85-100% | 🟢 **CONCLUÍDO** |
+| **Utilities**       | **~75%**    | 85-100% | 🟡 Em progresso  |
 
 ### **🧪 Estatísticas de Testes**
 
-- **Total de Testes:** 42
-- **Arquivos de Teste:** 4
+- **Total de Testes:** 74
+- **Arquivos de Teste:** 6
 - **Taxa de Sucesso:** 100% ✅
-- **Tempo Médio:** ~10s
+- **Ferramentas:** Vitest + Testing Library + MSW
+- **Tempo Médio:** ~15s
 
 ---
 
@@ -66,20 +67,29 @@ _Data: 11/09/2025_
 
 ### **🔥 PRIORIDADE ALTA**
 
-| DIA   | Arquivo              | Cobertura Atual | Meta | Estimativa   |
-| ----- | -------------------- | --------------- | ---- | ------------ |
-| **4** | **tmdb.ts**          | 43.39%          | 90%  | 8-10 testes  |
-| **5** | **MovieDetails.tsx** | 0%              | 95%  | 15-20 testes |
-| **6** | **Home.tsx**         | 0%              | 85%  | 12-15 testes |
+### **✅ DIA 4 - CONCLUÍDO: API Services (tmdb.ts)**
+
+**Meta:** Implementar testes abrangentes para tmdb.ts com MSW  
+**Resultado:** ✅ **100% cobertura alcançada**  
+**Arquivos:** tmdb.ts (100% Statements, 90% Branches, 100% Functions, 100% Lines)  
+**Testes:** 35 testes (12 unit + 23 integration)  
+**Ferramentas:** MSW (Mock Service Worker) + vi.mock()
+
+### **⚡ PRÓXIMOS ALVOS**
+
+| DIA   | Arquivo              | Cobertura Atual | Meta    | Estimativa   |
+| ----- | -------------------- | --------------- | ------- | ------------ |
+| **5** | **MovieDetails.tsx** | 0%              | 85-100% | 15-20 testes |
+| **6** | **Home.tsx**         | 0%              | 85-100% | 12-15 testes |
 
 ### **⚡ PRIORIDADE MÉDIA**
 
-| DIA    | Arquivo             | Cobertura Atual | Meta | Estimativa   |
-| ------ | ------------------- | --------------- | ---- | ------------ |
-| **7**  | **App.tsx**         | 0%              | 85%  | 8-10 testes  |
-| **8**  | **GenrePage.tsx**   | 0%              | 85%  | 15-18 testes |
-| **9**  | **Utils restantes** | Varia           | 95%  | 10-12 testes |
-| **10** | **Pages menores**   | 0%              | 85%  | 6-8 testes   |
+| DIA    | Arquivo             | Cobertura Atual | Meta    | Estimativa   |
+| ------ | ------------------- | --------------- | ------- | ------------ |
+| **7**  | **App.tsx**         | 0%              | 85-100% | 8-10 testes  |
+| **8**  | **GenrePage.tsx**   | 0%              | 85-100% | 15-18 testes |
+| **9**  | **Utils restantes** | Varia           | 85-100% | 10-12 testes |
+| **10** | **Pages menores**   | 0%              | 85-100% | 6-8 testes   |
 
 ---
 
@@ -87,17 +97,20 @@ _Data: 11/09/2025_
 
 ### **✅ Últimos Sucessos**
 
-1. **Header.tsx** - 100% cobertura (23 testes) 🎉
-2. **CategoryList.tsx** - 100% cobertura (12 testes) ✅
-3. **Workflow padrão** - Documentação completa 📚
-4. **Organização docs** - Estrutura profissional 🗂️
+1. **tmdb.ts** - 100% cobertura (35 testes: 12 unit + 23 integration) 🎉
+2. **MSW Implementation** - Mock Service Worker para APIs ⚡
+3. **Header.tsx** - 100% cobertura (23 testes) ✅
+4. **CategoryList.tsx** - 100% cobertura (12 testes) ✅
+5. **Workflow padrão** - Documentação completa 📚
 
 ### **🔧 Melhorias Técnicas**
 
-1. **Mocks robustos** - IMAGE_BASE_URL, React Router
-2. **Styled-components** - Props transientes ($active)
-3. **Testing Library** - Padrões de acessibilidade
-4. **Performance** - Otimização de testes (10s médio)
+1. **MSW (Mock Service Worker)** - Interceptação HTTP para testes de API
+2. **Dual Testing Strategy** - Unit tests (mocks) + Integration tests (MSW)
+3. **Error Scenarios** - Network errors, timeouts, 404s, auth failures
+4. **Real Code Execution** - Código real executado nos testes de integração
+5. **Testing Library** - Padrões de acessibilidade
+6. **Performance** - 74 testes executando em ~15s
 
 ---
 

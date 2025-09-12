@@ -52,6 +52,25 @@ npm run test:ui
 npm run test:coverage
 ```
 
+#### Padrões de Teste
+
+**Componentes:**
+
+- Use Testing Library para testes de componentes React
+- Teste comportamento, não implementação
+- Mock dependências externas com `vi.mock()`
+
+**APIs:**
+
+- Use MSW (Mock Service Worker) para interceptar requisições HTTP
+- Crie handlers em `src/test/mocks/` para diferentes cenários
+- Teste tanto unit (mocks) quanto integration (MSW)
+
+**Meta de Cobertura:** 85-100% por arquivo
+npm run test:coverage
+
+```
+
 ### 5. Pull Request
 
 1. Crie uma branch para sua feature
@@ -83,3 +102,4 @@ npm run test:coverage
 - [ ] Trailers dos filmes
 - [ ] Informações do elenco
 - [ ] Compartilhamento social
+```
