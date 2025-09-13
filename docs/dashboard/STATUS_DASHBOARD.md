@@ -1,7 +1,7 @@
 # 📊 Status Dashboard - Movie Explorer
 
-**Última Atualização:** 11 de setembro de 2025  
-**Branch Ativa:** feature/tmdb-tests-dia4  
+**Última Atualização:** 13 de setembro de 2025  
+**Branch Ativa:** main  
 **Workflow:** [DAILY_WORKFLOW_STANDARD](../workflow/DAILY_WORKFLOW_STANDARD.md)
 
 ---
@@ -12,18 +12,18 @@
 
 | Métrica             | Valor Atual | Meta    | Status           |
 | ------------------- | ----------- | ------- | ---------------- |
-| **Cobertura Total** | **~60%**    | 85-100% | 🟢 Melhorado     |
-| **Componentes**     | **~95%**    | 85-100% | 🟢 Excelente     |
+| **Cobertura Total** | **56.92%**  | 85-100% | 🟢 Melhorado     |
+| **Componentes**     | **98.84%**  | 85-100% | 🟢 Excelente     |
 | **Serviços (API)**  | **100%**    | 85-100% | 🟢 **CONCLUÍDO** |
-| **Utilities**       | **~75%**    | 85-100% | 🟡 Em progresso  |
+| **Utilities**       | **24.73%**  | 85-100% | 🟡 Em progresso  |
 
 ### **🧪 Estatísticas de Testes**
 
-- **Total de Testes:** 74
+- **Total de Testes:** 94 (+20 DIA 5)
 - **Arquivos de Teste:** 6
 - **Taxa de Sucesso:** 100% ✅
 - **Ferramentas:** Vitest + Testing Library + MSW
-- **Tempo Médio:** ~15s
+- **Tempo Médio:** ~11.5s
 
 ---
 
@@ -68,31 +68,43 @@ _Data: 11/09/2025_
 - **Status:** ✅ CONCLUÍDO
 - **Foco:** Implementar testes tmdb.ts com MSW
 - **Testes:** 35 implementados (54 → 74 total)
-- **Cobertura:** ~34% → ~XX% (+XX% - relatório pendente)
+- **Cobertura:** ~34% → 43.37% (+9.37%)
 - **Arquivos:** tmdb.ts (100% Statements, 90% Branches, 100% Functions, 100% Lines)
 - **Ferramentas:** MSW (Mock Service Worker) + vi.mock()
-- **Branch:** `feature/tmdb-tests-dia4` ✅ READY FOR MERGE
+- **Branch:** `feature/tmdb-tests-dia4` ✅ MERGED
 - **📋 Issue:** [Resumo Executivo](../reports/daily/issue/RESUMO_EXECUTIVO_DIA4.md)
+
+### **✅ DIA 5 - MovieDetails Component**
+
+_Data: 13/09/2025_
+
+- **Status:** ✅ CONCLUÍDO
+- **Foco:** Implementar testes MovieDetails.tsx
+- **Testes:** 20 implementados (74 → 94 total)
+- **Cobertura:** 43.37% → 56.92% (+13.55%)
+- **Arquivos:** MovieDetails.tsx (100% Statements, 95% Branches, 100% Functions, 100% Lines)
+- **Correções:** Tipo Movie.poster_path: string → string | null
+- **Branch:** `feature/movie-details-tests-dia5` ✅ MERGED
+- **📋 Issue:** [Resumo Executivo](../reports/daily/issue/RESUMO_EXECUTIVO_DIA5.md)
 
 ---
 
-## 🎯 **Próximos Alvos (DIA 5-10)**
+## 🎯 **Próximos Alvos (DIA 6-10)**
 
 ### **🔥 PRIORIDADE ALTA**
 
 ### **⚡ PRÓXIMOS ALVOS**
 
-| DIA   | Arquivo              | Cobertura Atual | Meta    | Estimativa   |
-| ----- | -------------------- | --------------- | ------- | ------------ |
-| **5** | **MovieDetails.tsx** | 0%              | 85-100% | 15-20 testes |
-| **6** | **Home.tsx**         | 0%              | 85-100% | 12-15 testes |
+| DIA   | Arquivo           | Cobertura Atual | Meta    | Estimativa   |
+| ----- | ----------------- | --------------- | ------- | ------------ |
+| **6** | **Home.tsx**      | 0%              | 85-100% | 12-15 testes |
+| **7** | **GenrePage.tsx** | 0%              | 85-100% | 15-18 testes |
 
 ### **⚡ PRIORIDADE MÉDIA**
 
 | DIA    | Arquivo             | Cobertura Atual | Meta    | Estimativa   |
 | ------ | ------------------- | --------------- | ------- | ------------ |
-| **7**  | **App.tsx**         | 0%              | 85-100% | 8-10 testes  |
-| **8**  | **GenrePage.tsx**   | 0%              | 85-100% | 15-18 testes |
+| **8**  | **App.tsx**         | 0%              | 85-100% | 8-10 testes  |
 | **9**  | **Utils restantes** | Varia           | 85-100% | 10-12 testes |
 | **10** | **Pages menores**   | 0%              | 85-100% | 6-8 testes   |
 
@@ -131,6 +143,7 @@ _Data: 11/09/2025_
 
 - ✅ **Header.tsx** - Navegação e UI principal (23 testes)
 - ✅ **CategoryList.tsx** - Lista de categorias (12 testes)
+- ✅ **MovieDetails.tsx** - ⭐ **Página de detalhes (20 testes)** 🆕
 - ✅ **tmdb.ts** - ⭐ **API services (35 testes: 12 unit + 23 integration + MSW)**
 - ✅ **GlobalStyles.ts** - Estilos globais
 - ✅ **header.constants.ts** - Constantes do Header
@@ -146,8 +159,7 @@ _Data: 11/09/2025_
 ### **🔴 Sem Cobertura**
 
 - ❌ **App.tsx** - Componente principal
-- ❌ **MovieDetails.tsx** - Página de detalhes
-- ❌ **Home.tsx** - Página inicial
+- ❌ **Home.tsx** - Página inicial (PRÓXIMO - DIA 6)
 - ❌ **GenrePage.tsx** - Página de gênero
 - ❌ **CategoriesPage.tsx** - Página de categorias
 - ❌ **MoviePage.tsx** - Wrapper de página
