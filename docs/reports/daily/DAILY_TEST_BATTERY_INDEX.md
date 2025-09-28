@@ -93,17 +93,81 @@ Este documento mantém o registro completo de todos os dias de desenvolvimento o
 
 ---
 
-### **🎭 DIA 5** - MovieDetails.tsx (Planejado)
+### **🎭 DIA 5** - MovieDetails.tsx
 
-**Status:** 📋 Planejado  
-**Arquivo:** [A ser criado]  
-**Branch:** feature/movie-details-tests
+**Status:** ✅ CONCLUÍDO  
+**Arquivo:** [`DAILY_TEST_BATTERY_REPORT_DIA5.md`](DAILY_TEST_BATTERY_REPORT_DIA5.md)  
+**Data:** 13 de setembro de 2025  
+**Branch:** feature/moviedetails-tests-dia5  
+**Commit:** [4f8c9e2] - feat(test): implementa testes MovieDetails.tsx com 100% cobertura
 
-**Objetivos Planejados:**
+**Objetivos:**
 
-- 🎯 MovieDetails.tsx - Meta ≥85%
-- 🎯 12-15 testes implementados
-- 🎯 Componente de página principal
+- ✅ MovieDetails.tsx - Meta 85-100% cobertura ✅ **100% ATINGIDA**
+- ✅ 12-15 testes implementados ✅ **20 IMPLEMENTADOS**
+- ✅ Seguir rigorosamente DAILY_WORKFLOW_STANDARD ✅
+
+**Progresso Alcançado:**
+
+- ✅ 20 testes abrangentes implementados
+- ✅ 100% cobertura MovieDetails.tsx
+- ✅ Cobertura geral: 43.37% → 56.92% (+13.55%)
+- ✅ Build + ESLint + Testes passando
+- ✅ Merge para main realizado
+
+**📋 Issue:** [Resumo Executivo DIA 5](issue/RESUMO_EXECUTIVO_DIA5.md)
+
+---
+
+### **🏠 DIA 6** - Home.tsx
+
+**Status:** ✅ CONCLUÍDO  
+**Arquivo:** [`DAILY_TEST_BATTERY_REPORT_DIA6.md`](DAILY_TEST_BATTERY_REPORT_DIA6.md)  
+**Data:** 13 de setembro de 2025  
+**Branch:** feature/home-tests-dia6  
+**Commit:** [Pendente] - feat(test): implementa testes Home.tsx com 99% cobertura
+
+**Objetivos:**
+
+- ✅ Home.tsx - Meta 85-100% cobertura ✅ **99.04% ATINGIDA**
+- ✅ 12-15 testes implementados ✅ **21 IMPLEMENTADOS**
+- ✅ Seguir rigorosamente DAILY_WORKFLOW_STANDARD ✅
+
+**Progresso Alcançado:**
+
+- ✅ 21 testes abrangentes implementados
+- ✅ 99.04% cobertura Home.tsx
+- ✅ Cobertura geral: 56.92% → 68.90% (+11.98%)
+- ✅ Build + ESLint + Testes passando
+- ✅ Load more functionality totalmente testada
+
+**📋 Issue:** [Resumo Executivo DIA 6](issue/RESUMO_EXECUTIVO_DIA6.md)
+
+---
+
+### **📂 DIA 7** - GenrePage.tsx (Próximo)
+
+**Status:** 🔄 Planejado  
+**Arquivo:** [`DAILY_TEST_BATTERY_REPORT_DIA7.md`](DAILY_TEST_BATTERY_REPORT_DIA7.md)  
+**Data:** TBD  
+**Branch:** feature/genrepage-tests-dia7  
+**Commit:** [Pendente]
+
+**Objetivos:**
+
+- 🎯 GenrePage.tsx - Meta 85-100% cobertura
+- 🎯 10-12 testes implementados
+- 🎯 Seguir rigorosamente DAILY_WORKFLOW_STANDARD
+
+**Progresso Atual:**
+
+- ⏳ Aguardando finalização DIA 6
+
+**Métricas Esperadas:**
+
+- **Testes:** 115 → ~127 (+12 novos)
+- **Cobertura GenrePage:** 0% → 85-100%
+- **Cobertura Geral:** 68.90% → ~75%
 
 ---
 
@@ -114,9 +178,11 @@ Este documento mantém o registro completo de todos os dias de desenvolvimento o
 ```
 DIA 1: ~20% (base inicial)
 DIA 2: 28.29% (+8.29%)
-DIA 3: ~34% (+5.7%) [em desenvolvimento]
-DIA 4: [planejado]
-DIA 5: [planejado]
+DIA 3: ~34% (+5.7%)
+DIA 4: ~43% (+9%)
+DIA 5: 56.92% (+13.55%)
+DIA 6: 68.90% (+11.98%)
+DIA 7: [planejado ~75%]
 ```
 
 ### **Evolução dos Testes:**
@@ -124,9 +190,11 @@ DIA 5: [planejado]
 ```
 DIA 1: 7 testes
 DIA 2: 19 testes (+12)
-DIA 3: 42 testes (+23) [em desenvolvimento]
-DIA 4: [planejado]
-DIA 5: [planejado]
+DIA 3: 42 testes (+23)
+DIA 4: 74 testes (+32)
+DIA 5: 94 testes (+20)
+DIA 6: 115 testes (+21)
+DIA 7: [planejado ~127]
 ```
 
 ### **Componentes Cobertos:**
@@ -134,8 +202,11 @@ DIA 5: [planejado]
 - ✅ **CategoryList.tsx** - 100% (DIA 2)
 - ✅ **MovieCard.tsx** - 95.18% (DIA 1)
 - ✅ **GlobalStyles.ts** - 100% (DIA 1)
-- 🔄 **Header.tsx** - 100% (DIA 3 - em desenvolvimento)
-- 📋 **tmdb.ts** - 43.39% → ≥90% (DIA 4 - planejado)
+- ✅ **Header.tsx** - 100% (DIA 3)
+- ✅ **tmdb.ts** - 100% (DIA 4)
+- ✅ **MovieDetails.tsx** - 100% (DIA 5)
+- ✅ **Home.tsx** - 99.04% (DIA 6)
+- 🔄 **GenrePage.tsx** - 0% → 85%+ (DIA 7 - próximo)
 
 ---
 
@@ -183,7 +254,9 @@ Os resumos executivos servem como **encerramentos formais** das issues/tarefas:
 | DIA   | Issue                               | Status       | Resumo Executivo                                           |
 | ----- | ----------------------------------- | ------------ | ---------------------------------------------------------- |
 | **4** | Implementar testes tmdb.ts com MSW  | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA4.md](issue/RESUMO_EXECUTIVO_DIA4.md) |
-| **5** | Implementar testes MovieDetails.tsx | 🔄 PENDENTE  | -                                                          |
+| **5** | Implementar testes MovieDetails.tsx | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA5.md](issue/RESUMO_EXECUTIVO_DIA5.md) |
+| **6** | Implementar testes Home.tsx         | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA6.md](issue/RESUMO_EXECUTIVO_DIA6.md) |
+| **7** | Implementar testes GenrePage.tsx    | 🔄 PRÓXIMO   | -                                                          |
 
 **📋 [Ver todos os resumos →](issue/README.md)**
 

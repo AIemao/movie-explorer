@@ -1,7 +1,7 @@
 # 📊 Status Dashboard - Movie Explorer
 
-**Última Atualização:** 13 de setembro de 2025  
-**Branch Ativa:** main  
+**Última Atualização:** 28 de setembro de 2025  
+**Branch Ativa:** feature/home-tests-dia6  
 **Workflow:** [DAILY_WORKFLOW_STANDARD](../workflow/DAILY_WORKFLOW_STANDARD.md)
 
 ---
@@ -12,18 +12,19 @@
 
 | Métrica             | Valor Atual | Meta    | Status           |
 | ------------------- | ----------- | ------- | ---------------- |
-| **Cobertura Total** | **56.92%**  | 85-100% | 🟢 Melhorado     |
+| **Cobertura Total** | **68.90%**  | 85-100% | 🟢 Excelente     |
 | **Componentes**     | **98.84%**  | 85-100% | 🟢 Excelente     |
 | **Serviços (API)**  | **100%**    | 85-100% | 🟢 **CONCLUÍDO** |
+| **Pages**           | **40.46%**  | 85-100% | 🟢 Em progresso  |
 | **Utilities**       | **24.73%**  | 85-100% | 🟡 Em progresso  |
 
 ### **🧪 Estatísticas de Testes**
 
-- **Total de Testes:** 94 (+20 DIA 5)
-- **Arquivos de Teste:** 6
+- **Total de Testes:** 115 (+21 DIA 6)
+- **Arquivos de Teste:** 7
 - **Taxa de Sucesso:** 100% ✅
 - **Ferramentas:** Vitest + Testing Library + MSW
-- **Tempo Médio:** ~11.5s
+- **Tempo Médio:** ~12.3s
 
 ---
 
@@ -87,9 +88,29 @@ _Data: 13/09/2025_
 - **Branch:** `feature/movie-details-tests-dia5` ✅ MERGED
 - **📋 Issue:** [Resumo Executivo](../reports/daily/issue/RESUMO_EXECUTIVO_DIA5.md)
 
+### **✅ DIA 6 - Home Page Component**
+
+_Data: 28/09/2025_
+
+- **Status:** ✅ CONCLUÍDO
+- **Foco:** Implementar testes Home.tsx (Página principal)
+- **Testes:** 21 implementados (94 → 115 total)
+- **Cobertura:** 56.92% → 68.90% (+11.98%)
+- **Arquivos:** Home.tsx (99.04% Statements, 96.42% Branches, 100% Functions, 99.04% Lines)
+- **Features:** Load More, Error Handling, API Integration, Estados de carregamento
+- **Branch:** `feature/home-tests-dia6` ✅ EM PROGRESSO
+- **📋 Issue:** [Resumo Executivo](../reports/daily/issue/RESUMO_EXECUTIVO_DIA6.md)
+- **Foco:** Implementar testes MovieDetails.tsx
+- **Testes:** 20 implementados (74 → 94 total)
+- **Cobertura:** 43.37% → 56.92% (+13.55%)
+- **Arquivos:** MovieDetails.tsx (100% Statements, 95% Branches, 100% Functions, 100% Lines)
+- **Correções:** Tipo Movie.poster_path: string → string | null
+- **Branch:** `feature/movie-details-tests-dia5` ✅ MERGED
+- **📋 Issue:** [Resumo Executivo](../reports/daily/issue/RESUMO_EXECUTIVO_DIA5.md)
+
 ---
 
-## 🎯 **Próximos Alvos (DIA 6-10)**
+## 🎯 **Próximos Alvos (DIA 7-11)**
 
 ### **🔥 PRIORIDADE ALTA**
 
@@ -97,34 +118,36 @@ _Data: 13/09/2025_
 
 | DIA   | Arquivo           | Cobertura Atual | Meta    | Estimativa   |
 | ----- | ----------------- | --------------- | ------- | ------------ |
-| **6** | **Home.tsx**      | 0%              | 85-100% | 12-15 testes |
 | **7** | **GenrePage.tsx** | 0%              | 85-100% | 15-18 testes |
+| **8** | **App.tsx**       | 0%              | 85-100% | 8-10 testes  |
 
 ### **⚡ PRIORIDADE MÉDIA**
 
 | DIA    | Arquivo             | Cobertura Atual | Meta    | Estimativa   |
 | ------ | ------------------- | --------------- | ------- | ------------ |
-| **8**  | **App.tsx**         | 0%              | 85-100% | 8-10 testes  |
 | **9**  | **Utils restantes** | Varia           | 85-100% | 10-12 testes |
 | **10** | **Pages menores**   | 0%              | 85-100% | 6-8 testes   |
+| **11** | **Integration E2E** | 0%              | 70-85%  | 8-10 testes  |
 
 ---
 
 ## 🏆 **Conquistas Recentes**
 
-### **✅ Últimos Sucessos (DIA 4)**
+### **✅ Últimos Sucessos (DIA 6)**
 
-1. 🎉 **tmdb.ts - 100% cobertura** (35 testes: 12 unit + 23 integration) **DESTAQUE**
-2. ⚡ **MSW Implementation** - Mock Service Worker para interceptação HTTP
-3. 🔧 **Dual Testing Strategy** - Unit tests (mocks) + Integration tests (MSW)
-4. 📊 **Real Code Execution** - Código real executado via MSW
-5. 🧪 **Error Scenarios** - Network errors, timeouts, 404s, auth failures
+1. 🎉 **Home.tsx - 99.04% cobertura** (21 testes: Load More + Error Handling + API Integration) **DESTAQUE**
+2. ⚡ **Página Principal Completa** - Estados de carregamento, paginação, tratamento de erro
+3. 🔧 **Load More Functionality** - Testes para funcionalidade de carregar mais filmes
+4. 📊 **Cobertura 68.90%** - Saltou de 56.92% para 68.90% (+11.98%)
+5. 🧪 **115 Testes Passando** - Crescimento de 94 para 115 testes (+21 testes)
 
-### **✅ Sucessos Anteriores**
+### **✅ Sucessos Anteriores (DIA 4-5)**
 
-6. **Header.tsx** - 100% cobertura (23 testes) ✅
-7. **CategoryList.tsx** - 100% cobertura (12 testes) ✅
-8. **Workflow padrão** - Documentação completa 📚
+6. **MovieDetails.tsx** - 100% cobertura (20 testes) ✅
+7. **tmdb.ts** - 100% cobertura (35 testes: 12 unit + 23 integration) ✅
+8. **MSW Implementation** - Mock Service Worker para interceptação HTTP ✅
+9. **Header.tsx** - 100% cobertura (23 testes) ✅
+10. **CategoryList.tsx** - 100% cobertura (12 testes) ✅
 
 ### **🔧 Melhorias Técnicas**
 
@@ -150,21 +173,27 @@ _Data: 13/09/2025_
 - ✅ **movieCard.constants.ts** - Constantes do MovieCard
 - ✅ **categoryList.constants.ts** - Constantes do CategoryList
 
+- ✅ **home.constants.ts** - ⭐ **Constantes do Home (DIA 6)** 🆕
+
 ### **🟡 Cobertura Parcial**
 
 - 🔶 **MovieCard.tsx** - 95.18% (4 linhas faltando)
 - 🔶 **movieCard.utils.ts** - 73.91%
 - 🔶 **categoryList.utils.ts** - 35.29%
+- 🔶 **home.utils.ts** - ⭐ **100% (DIA 6)** 🆕
 
 ### **🔴 Sem Cobertura**
 
-- ❌ **App.tsx** - Componente principal
-- ❌ **Home.tsx** - Página inicial (PRÓXIMO - DIA 6)
-- ❌ **GenrePage.tsx** - Página de gênero
+- ❌ **App.tsx** - Componente principal (PRÓXIMO - DIA 7-8)
+- ❌ **GenrePage.tsx** - Página de gênero (PRÓXIMO - DIA 7)
 - ❌ **CategoriesPage.tsx** - Página de categorias
 - ❌ **MoviePage.tsx** - Wrapper de página
 - ❌ **header.utils.ts** - Utilitários do Header
 - ❌ **movieDetails.utils.ts** - Utilitários de detalhes
+
+### **🟢 100% Cobertura (NOVOS)**
+
+- ✅ **Home.tsx** - ⭐ **Página principal (99.04% - 21 testes)** 🆕
 
 ---
 
