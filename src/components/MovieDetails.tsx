@@ -4,6 +4,11 @@ import styled from "styled-components";
 import type { MovieDetails as MovieDetailsType } from "../api/tmdb";
 import { IMAGE_BASE_URL, tmdbService } from "../api/tmdb";
 import { LoadingSpinner } from "../styles/GlobalStyles";
+import {
+  formatRating,
+  formatReleaseDate,
+  formatRuntime,
+} from "./utils/movieDetails.utils";
 
 const Container = styled.div`
   padding: 2rem 0;
@@ -204,20 +209,6 @@ export const MovieDetails: React.FC = () => {
     fetchMovie();
   }, [id]);
 
-  const formatRuntime = (minutes: number) => {
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = minutes % 60;
-    return `${hours}h ${remainingMinutes}min`;
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("pt-BR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
-
   if (loading) {
     return <LoadingSpinner>Carregando detalhes do filme...</LoadingSpinner>;
   }
@@ -245,9 +236,10 @@ export const MovieDetails: React.FC = () => {
         <MovieInfo>
           <Title data-testid="movie-title">{movie.title}</Title>
           <MetaInfo>
-            <MetaItem>📅 {formatDate(movie.release_date)}</MetaItem>
+            {" "}
+            <MetaItem>📅 {formatReleaseDate(movie.release_date)}</MetaItem>
             <MetaItem>⏱️ {formatRuntime(movie.runtime)}</MetaItem>
-            <MetaItem>⭐ {Math.round(movie.vote_average * 10) / 10}</MetaItem>
+            <MetaItem>⭐ {formatRating(movie.vote_average)}</MetaItem>
           </MetaInfo>{" "}
           <Genres>
             {movie.genres.map((genre) => (
