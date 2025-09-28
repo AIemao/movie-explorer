@@ -29,11 +29,12 @@ daily/issue/
 
 ## 📋 **Lista de Issues Encerradas**
 
-| DIA   | Issue                                  | Status       | Arquivo                                              | Data       |
-| ----- | -------------------------------------- | ------------ | ---------------------------------------------------- | ---------- |
-| **4** | **Implementar testes tmdb.ts com MSW** | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA4.md](RESUMO_EXECUTIVO_DIA4.md) | 11/09/2025 |
-| **5** | Implementar testes MovieDetails.tsx    | 🔄 PENDENTE  | -                                                    | -          |
-| **6** | Implementar testes Home.tsx            | 🔄 PENDENTE  | -                                                    | -          |
+| DIA   | Issue                                   | Status       | Arquivo                                              | Data       |
+| ----- | --------------------------------------- | ------------ | ---------------------------------------------------- | ---------- |
+| **4** | **Implementar testes tmdb.ts com MSW**  | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA4.md](RESUMO_EXECUTIVO_DIA4.md) | 11/09/2025 |
+| **5** | **Implementar testes MovieDetails.tsx** | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA5.md](RESUMO_EXECUTIVO_DIA5.md) | 13/09/2025 |
+| **6** | **Implementar testes Home.tsx**         | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA6.md](RESUMO_EXECUTIVO_DIA6.md) | 13/09/2025 |
+| **7** | Implementar testes GenrePage.tsx        | 🔄 PRÓXIMO   | -                                                    | -          |
 
 ---
 
