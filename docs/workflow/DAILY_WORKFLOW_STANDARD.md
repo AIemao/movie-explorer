@@ -226,13 +226,29 @@ git commit -m "feat(tests): Implementar testes para [NomeDoArquivo] com X% de co
 git push origin feature/[nome-da-branch]
 ```
 
-**D. Avaliar e Mergear:**
+**D. Atualizar Documentação Central:**
+
+```bash
+# Atualizar arquivos principais de documentação
+# 1. STATUS_DASHBOARD.md (métricas do dia)
+# 2. README.md da raiz (sincronizar com dashboard)
+# 3. Relatório diário (se aplicável)
+```
+
+**Checklist obrigatório:**
+
+- [ ] `docs/dashboard/STATUS_DASHBOARD.md` - Atualizar métricas do dia
+- [ ] `README.md` (raiz) - Sincronizar cobertura e progresso
+- [ ] `docs/reports/daily/DAILY_TEST_BATTERY_REPORT_DIAX.md` - Criar relatório do dia
+- [ ] `docs/reports/daily/DAILY_TEST_BATTERY_INDEX.md` - Adicionar entrada do dia
+
+**E. Avaliar e Mergear:**
 
 - [ ] Revisão automática (CI/CD)
 - [ ] Revisão manual se necessário
 - [ ] Merge para main
 - [ ] Deletar branch feature
-- [ ] Atualizar documentação central
+- [ ] Validar sincronização de documentação
 
 ---
 

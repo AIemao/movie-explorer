@@ -21,23 +21,29 @@ Um aplicativo React moderno para explorar filmes usando a API do TMDb, desenvolv
 
 ### 🧪 **Cobertura de Testes**
 
-- **Total:** 34.01% ✅ (+XX% DIA 4 - aguardando relatório)
-- **Componentes:** 58.78% ✅ (com tmdb.ts: estimado 70%+)
-- **74 testes** passando em 6 arquivos (incluindo MSW)
+- **Total:** 86.33% 🎯 ✅ **META ATINGIDA** (DIA 7 - GenrePage concluído)
+- **Componentes:** 98.81% ✅ Excelente
+- **Pages:** 92.99% 🎯 ✅ **META ATINGIDA**
+- **135 testes** passando em 8 arquivos (100% sucesso)
 
-### 🏆 **Componentes 100% Cobertos**
+### 🏆 **Arquivos 100% Cobertos**
 
+- ✅ **GenrePage.tsx** - Página de gênero (20 testes) **DIA 7**
+- ✅ **Home.tsx** - Página principal (21 testes) **DIA 6**
+- ✅ **MovieDetails.tsx** - Detalhes do filme (20 testes)
 - ✅ **Header.tsx** - Navegação principal (23 testes)
 - ✅ **CategoryList.tsx** - Lista de gêneros (12 testes)
 - ✅ **tmdb.ts** - API services (35 testes: 12 unit + 23 integration)
-- ✅ **GlobalStyles.ts** - Estilos globais
 
-### 📈 **Progresso Semanal**
+### 📈 **Progresso Semanal - SETEMBRO 2025**
 
 - **DIA 1:** Configuração + MovieCard (4 testes)
 - **DIA 2:** CategoryList expandido (12 testes)
 - **DIA 3:** Header implementado (23 testes)
 - **DIA 4:** ✅ **tmdb.ts CONCLUÍDO** (35 testes + MSW + 100% cobertura)
+- **DIA 5:** ✅ **MovieDetails.tsx CONCLUÍDO** (20 testes + 100% cobertura)
+- **DIA 6:** ✅ **Home.tsx CONCLUÍDO** (21 testes + Load More + 99% cobertura)
+- **DIA 7:** 🎯 ✅ **GenrePage.tsx CONCLUÍDO** (20 testes + Navigation + 99% cobertura)
 
 **📊 [Dashboard Completo →](docs/dashboard/STATUS_DASHBOARD.md)**  
 **📚 [Documentação →](docs/)**

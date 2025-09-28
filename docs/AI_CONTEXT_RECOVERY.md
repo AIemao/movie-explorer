@@ -25,28 +25,37 @@ Você acaba de ser chamado para continuar o desenvolvimento do **Movie Explorer*
 
 1. **Leia imediatamente:** `dashboard/STATUS_DASHBOARD.md` (estado atual completo)
 2. **Leia imediatamente:** `workflow/DAILY_WORKFLOW_STANDARD.md` (processo obrigatório)
-3. **Execute:** `npm run test:coverage` (para ver estado atual dos testes)
+3. **Leia imediatamente:** `DOCS_STRUCTURE_GUIDE.md` (estrutura da documentação)
+4. **Execute:** `npm run test:coverage` (para ver estado atual dos testes)
 
 ---
 
-## 📊 **CONTEXTO ATUAL DO PROJETO**
+## 📊 **CONTEXTO ATUAL DO PROJETO - SETEMBRO 2025**
 
 ### **🚨 PRIMEIRA AÇÃO - VERIFICAR ESTADO ATUAL:**
 
 **ANTES de fazer qualquer coisa, execute:**
 
-1. **`npm run test:coverage`** - Para ver métricas atuais
+1. **`npm run test:coverage`** - Para ver métricas atuais (esperado: 135 testes, 86.33% cobertura)
 2. **Leia:** `dashboard/STATUS_DASHBOARD.md` - Estado completo atualizado
-3. **Identifique:** Próximo alvo baseado na tabela "Próximos Alvos"
+3. **Leia:** `DOCS_STRUCTURE_GUIDE.md` - Estrutura da documentação
+4. **Identifique:** Próximo alvo baseado na tabela "Próximos Alvos"
 
-### **📊 ESTRUTURA DE PROGRESSO:**
-
-O projeto segue desenvolvimento **incremental diário**:
+### **📊 ESTADO ATUAL (DIA 7 - Setembro 2025):**
 
 ```
-✅ CONCLUÍDOS: Consulte STATUS_DASHBOARD.md para lista atual
-🎯 PRÓXIMO: Identificar na tabela "Próximos Alvos" do dashboard
-📈 META GERAL: 80%+ cobertura total (consulte métricas atuais)
+✅ CONCLUÍDOS:
+- DIA 1-6: MovieCard, CategoryList, Header, tmdb.ts, MovieDetails, Home
+- DIA 7: GenrePage.tsx (99.26% cobertura, 20 testes)
+- Total: 135 testes passando em 8 arquivos
+- Cobertura geral: 86.33%
+
+🎯 PRÓXIMOS ALVOS:
+- Utilitários e constantes com baixa cobertura
+- CategoriesPage.tsx e MoviePage.tsx (0% cobertura)
+- Finalização para 90%+ cobertura total
+
+📈 META: 90%+ cobertura total (já em 86.33%)
 ```
 
 ### **🎯 COMO IDENTIFICAR PRÓXIMO ALVO:**
@@ -112,19 +121,29 @@ npm run build && npm run lint && npm run test:coverage
 
 ### **🎯 Para entender o PROCESSO:**
 
-1. **`workflow/DAILY_WORKFLOW_STANDARD.md`** - Processo completo de 8 etapas
+1. **`workflow/DAILY_WORKFLOW_STANDARD.md`** - Processo completo de 8 etapas (ATUALIZADO: inclui sincronização README.md)
 2. **`dashboard/STATUS_DASHBOARD.md`** - Estado atual, próximos alvos, métricas
+3. **`DOCS_STRUCTURE_GUIDE.md`** - **NOVO!** Estrutura completa da documentação
+
+### **🆕 NOVIDADES IMPORTANTES (Setembro 2025):**
+
+- **DAILY_WORKFLOW_STANDARD atualizado** - ETAPA 8 agora inclui sincronização obrigatória do README.md
+- **DOCS_STRUCTURE_GUIDE.md criado** - Mapa completo da documentação com responsabilidades claras
+- **Padrão de relatórios estabelecido** - reports/daily/ com nomenclatura e conteúdo padronizados
+- **Sincronização documentação** - README.md raiz deve sempre refletir STATUS_DASHBOARD.md
 
 ### **🎯 Para entender PADRÕES DE TESTE:**
 
-3. **`../src/test/components/MovieDetails.test.tsx`** - Exemplo perfeito (20 testes)
-4. **`../src/test/components/Header.test.tsx`** - Exemplo completo (23 testes)
-5. **`../src/test/api/tmdb.integration.test.ts`** - Exemplo MSW integration
+4. **`../src/test/pages/GenrePage.test.tsx`** - **MAIS RECENTE** Exemplo completo (20 testes, DIA 7)
+5. **`../src/test/pages/Home.test.tsx`** - Exemplo página com load more (21 testes, DIA 6)
+6. **`../src/test/components/MovieDetails.test.tsx`** - Exemplo componente completo (20 testes)
+7. **`../src/test/components/Header.test.tsx`** - Exemplo integração routing (23 testes)
+8. **`../src/test/api/tmdb.integration.test.ts`** - Exemplo MSW integration (23 testes)
 
 ### **🎯 Para identificar PRÓXIMO ALVO:**
 
-6. **`dashboard/STATUS_DASHBOARD.md`** - Tabela "Próximos Alvos" atualizada
-7. **`../src/test/mocks/tmdb-handlers.ts`** - Handlers MSW configurados
+9. **`dashboard/STATUS_DASHBOARD.md`** - Tabela "Próximos Alvos" atualizada (DIA 8+)
+10. **`../src/test/mocks/tmdb-handlers.ts`** - Handlers MSW configurados e testados
 
 ---
 
@@ -235,19 +254,21 @@ describe("[ComponentName]", () => {
 
 ### **❌ NUNCA FAZER:**
 
-- Quebrar testes existentes (94 testes devem continuar passando)
+- Quebrar testes existentes (135 testes devem continuar passando)
 - Ignorar warnings do ESLint
 - Pular etapas do DAILY_WORKFLOW_STANDARD
 - Fazer commit sem 85%+ cobertura no arquivo alvo
 - Modificar arquivos sem criar testes primeiro
+- Esquecer de atualizar README.md da raiz após implementação (ETAPA 8)
 
 ### **✅ SEMPRE FAZER:**
 
 - Executar bateria completa ANTES e DEPOIS do desenvolvimento
-- Seguir estrutura de testes estabelecida
-- Usar MSW para testes de integração de API
-- Documentar todas as mudanças
-- Atualizar STATUS_DASHBOARD.md
+- Seguir estrutura de testes estabelecida (6 categorias padrão)
+- Usar MSW para testes de integração de API (já configurado e funcionando)
+- Documentar todas as mudanças (relatórios diários + resumos executivos)
+- Atualizar STATUS_DASHBOARD.md E README.md da raiz (sincronização obrigatória)
+- Seguir padrões estabelecidos no DOCS_STRUCTURE_GUIDE.md
 
 ---
 
@@ -288,10 +309,12 @@ git push origin feature/[component-name]-tests-dia[X]
 ### **ANTES de começar qualquer desenvolvimento:**
 
 - [ ] **Li** `dashboard/STATUS_DASHBOARD.md` completo
-- [ ] **Li** `workflow/DAILY_WORKFLOW_STANDARD.md` completo
-- [ ] **Executei** `npm run test:coverage` (verificar testes atuais)
+- [ ] **Li** `workflow/DAILY_WORKFLOW_STANDARD.md` completo (ETAPA 8 atualizada)
+- [ ] **Li** `DOCS_STRUCTURE_GUIDE.md` completo (nova estrutura)
+- [ ] **Executei** `npm run test:coverage` (esperado: 135 testes, 86.33% cobertura)
+- [ ] **Confirmei** todos os testes passando em 8 arquivos
 - [ ] **Identifiquei** próximo arquivo alvo no STATUS_DASHBOARD.md
-- [ ] **Verifiquei** exemplos em `../src/test/components/MovieDetails.test.tsx`
+- [ ] **Verifiquei** exemplos mais recentes: GenrePage.test.tsx (DIA 7) e Home.test.tsx (DIA 6)
 - [ ] **Confirmei** que estou na branch `main` e atualizada
 
 ### **PRIMEIRA PERGUNTA ESPERADA:**
@@ -311,9 +334,11 @@ Manter a **excelência em qualidade** já estabelecida:
 
 ### **Meta do projeto:**
 
-- **80%+ cobertura geral** (verificar STATUS_DASHBOARD.md para valor atual)
-- **Todos os componentes críticos** com testes abrangentes
+- **90%+ cobertura geral** (atual: 86.33%, próximo de atingir a meta)
+- **Todos os componentes críticos** com testes abrangentes (✅ CONCLUÍDO)
+- **Todas as páginas principais** com testes completos (Home ✅, GenrePage ✅)
 - **CI/CD funcionando** (GitHub Actions)
+- **Documentação estruturada** e mantida sempre atualizada
 - **Base sólida** para E2E tests futuros
 
 ---
@@ -335,16 +360,18 @@ Manter a **excelência em qualidade** já estabelecida:
 
 ### **Para começar AGORA:**
 
-1. **Execute:** `npm run test:coverage`
-2. **Confirme:** Todos os testes passando
-3. **Leia:** `dashboard/STATUS_DASHBOARD.md` (próximo alvo)
-4. **Siga:** DAILY_WORKFLOW_STANDARD rigorosamente
-5. **Pergunte:** "Pronto para iniciar o próximo DIA?"
+1. **Execute:** `npm run test:coverage` (esperado: 135 testes, 86.33% cobertura)
+2. **Confirme:** Todos os testes passando (deve mostrar 8 arquivos)
+3. **Leia:** `dashboard/STATUS_DASHBOARD.md` (DIA 7 completo, próximos alvos)
+4. **Leia:** `DOCS_STRUCTURE_GUIDE.md` (nova estrutura documentação)
+5. **Siga:** DAILY_WORKFLOW_STANDARD com ETAPA 8 atualizada
+6. **Pergunte:** "Pronto para iniciar DIA 8 ou finalizar documentação DIA 7?"
 
 ---
 
 **🎬 PROJETO MOVIE EXPLORER - DESENVOLVIMENTO ORIENTADO POR TESTES**  
-**📊 STATUS: CONSULTE STATUS_DASHBOARD.md PARA ESTADO ATUAL**  
-**🎯 MISSÃO: MANTER EXCELÊNCIA EM QUALIDADE**
+**📊 STATUS ATUAL: DIA 7 COMPLETO - 135 TESTES - 86.33% COBERTURA**  
+**🎯 PRÓXIMO: ATINGIR 90%+ COBERTURA GERAL**  
+**📚 DOCUMENTAÇÃO: ESTRUTURADA E SINCRONIZADA**
 
-**VAMOS CONTINUAR ONDE PARAMOS!** 🚀
+**EXCELÊNCIA MANTIDA - CONTINUE O MOMENTUM!** 🚀
