@@ -1,7 +1,7 @@
 # 📊 Status Dashboard - Movie Explorer
 
 **Última Atualização:** 28 de setembro de 2025  
-**Branch Ativa:** feature/components-utils-tests-dia8  
+**Branch Ativa:** feature/app-tests-dia9  
 **Workflow:** [DAILY_WORKFLOW_STANDARD](../workflow/DAILY_WORKFLOW_STANDARD.md)
 
 ---
@@ -12,19 +12,19 @@
 
 | Métrica             | Valor Atual | Meta    | Status                     |
 | ------------------- | ----------- | ------- | -------------------------- |
-| **Cobertura Total** | **91.47%**  | 85-100% | 🟢 **META 90%+ ATINGIDA!** |
-| **Componentes**     | **98.81%**  | 85-100% | 🟢 Excelente               |
+| **Cobertura Total** | **95.93%**  | 85-100% | 🟢 **META 95%+ ATINGIDA!** |
+| **Componentes**     | **99%+**    | 85-100% | 🟢 Excelente               |
 | **Serviços (API)**  | **100%**    | 85-100% | 🟢 **CONCLUÍDO**           |
-| **Pages**           | **92.99%**  | 85-100% | 🟢 **META ATINGIDA**       |
+| **Pages**           | **99%+**    | 85-100% | 🟢 **META ATINGIDA**       |
 | **Utilities**       | **94.49%**  | 85-100% | 🟢 **CONCLUÍDO DIA 8**     |
 
 ### **🧪 Estatísticas de Testes**
 
-- **Total de Testes:** 179 (+44 DIA 8)
-- **Arquivos de Teste:** 9
+- **Total de Testes:** 187 (+8 DIA 9)
+- **Arquivos de Teste:** 10
 - **Taxa de Sucesso:** 100% ✅
 - **Ferramentas:** Vitest + Testing Library + MSW
-- **Tempo Médio:** ~18.7s
+- **Tempo Médio:** ~19s
 
 ---
 
@@ -128,20 +128,41 @@ _Data: 28/09/2025_
   - `movieCard.utils.ts` (90.62% - 12 testes)
   - `movieDetails.utils.ts` (93.75% - 14 testes)
 - **Features:** Slug generation, Date formatting, Error handling, Budget formatting
-- **Branch:** `feature/components-utils-tests-dia8` ✅ EM PROGRESSO
-- **📋 Issue:** Criar `RESUMO_EXECUTIVO_DIA8.md`
+- **Branch:** `feature/components-utils-tests-dia8` ✅ MERGED
+- **📋 Issue:** [Resumo Executivo](../reports/daily/issue/RESUMO_EXECUTIVO_DIA8.md)
+
+### **✅ DIA 9 - App.tsx & Cobertura Final**
+
+_Data: 28/09/2025_
+
+- **Status:** ✅ CONCLUÍDO
+- **Foco:** Testes completos App.tsx (renderização, tema, rotas, integração, localStorage, acessibilidade)
+- **Testes:** 8 novos (179 → 187 total)
+- **Cobertura:** 91.47% → 95.93% (+4.46%)
+- **Arquivos:** App.tsx (100% cobertura)
+- **Branch:** `feature/app-tests-dia9` ✅ PR aberto
+- **Resumo:** App.tsx agora 100% coberto, meta global 95%+ atingida, todos os testes passam
+
+### **🔄 DIA 10 - CategoriesPage.tsx (PRÓXIMO)**
+
+_Data: 28/09/2025_
+
+- **Status:** 🔄 PLANEJADO
+- **Foco:** Implementar testes para CategoriesPage.tsx
+- **Cobertura atual:** 0%
+- **Meta:** 6-8 testes → ~96-97% cobertura geral
+- **Branch:** `feature/categories-page-tests-dia10` (a criar)
 
 ---
 
-## 🎯 **Próximos Alvos (DIA 9-12)**
+## 🎯 **Próximos Alvos (DIA 10-12)**
 
 ### **🔥 PRIORIDADE ALTA**
 
-| DIA    | Arquivo                | Cobertura Atual | Meta    | Estimativa  |
-| ------ | ---------------------- | --------------- | ------- | ----------- |
-| **9**  | **App.tsx**            | 0%              | 85-100% | 8-10 testes |
-| **10** | **CategoriesPage.tsx** | 0%              | 85-100% | 6-8 testes  |
-| **11** | **MoviePage.tsx**      | 0%              | 85-100% | 6-8 testes  |
+| DIA    | Arquivo                | Cobertura Atual | Meta    | Estimativa |
+| ------ | ---------------------- | --------------- | ------- | ---------- |
+| **10** | **CategoriesPage.tsx** | 0%              | 85-100% | 6-8 testes |
+| **11** | **MoviePage.tsx**      | 0%              | 85-100% | 6-8 testes |
 
 ### **⚡ PRIORIDADE MÉDIA**
 
@@ -155,15 +176,21 @@ _Data: 28/09/2025_
 
 ## 🏆 **Conquistas Recentes**
 
-### **🎉 ÚLTIMOS SUCESSOS (DIA 8) - MARCO HISTÓRICO 90%+**
+### **🎉 ÚLTIMOS SUCESSOS (DIA 9)**
 
-1. 🏆 **FIRST TIME 90%+ COVERAGE!** - 91.47% cobertura geral atingida!
-2. 🧰 **UTILS BUNDLE COMPLETO** - 4 arquivos utils testados em um dia (44 testes)
-3. 📈 **SALTO ESTRATÉGICO** - De 86.33% para 91.47% (+5.14% utils impact)
-4. 🧪 **179 Testes Passando** - Crescimento de 135 para 179 testes (+44 testes)
-5. 🎯 **UTILITIES 94.49%** - De 45.87% para 94.49% (+48.62% em um dia!)
+1. 🏆 **META GLOBAL 95%+ ATINGIDA!** - 95.93% cobertura geral atingida!
+2. 🧰 **APP.TSX COMPLETO** - 100% cobertura (8 testes)
+3. 📈 **SALTO ESTRATÉGICO** - De 91.47% para 95.93% (+4.46%)
+4. 🧪 **187 Testes Passando** - Crescimento de 179 para 187 testes (+8 testes)
+5. 🎯 **COMPONENTES 99%+** - Cobertura de componentes quase perfeita!
 
-### **✅ Sucessos DIA 7**
+### **✅ Sucessos DIA 8**
+
+1. 🏆 **UTILS BUNDLE COMPLETO** - 4 arquivos utils testados em um dia (44 testes)
+2. 🎯 **META DE 90% ATINGIDA** - 91.47% cobertura total
+3. 📈 **SALTO ESTRATÉGICO** - +5.14% em um dia
+
+### **✅ Sucessos Anteriores (DIA 7)**
 
 1. 🏆 **GenrePage.tsx - 99.26% cobertura** (20 testes)
 2. 🎯 **META DE 85% ATINGIDA** - 86.33% cobertura total
@@ -205,8 +232,9 @@ _Data: 28/09/2025_
 - ✅ **header.constants.ts** - Constantes do Header
 - ✅ **movieCard.constants.ts** - Constantes do MovieCard
 - ✅ **categoryList.constants.ts** - Constantes do CategoryList
-
 - ✅ **home.constants.ts** - ⭐ **Constantes do Home (DIA 6)** 🆕
+
+- ✅ **App.tsx** - ⭐ **Componente principal (100% - 8 testes)** 🆕
 
 ### **🟡 Cobertura Parcial**
 
@@ -217,16 +245,10 @@ _Data: 28/09/2025_
 
 ### **🔴 Sem Cobertura**
 
-- ❌ **App.tsx** - Componente principal (PRÓXIMO - DIA 7-8)
-- ❌ **GenrePage.tsx** - Página de gênero (PRÓXIMO - DIA 7)
 - ❌ **CategoriesPage.tsx** - Página de categorias
 - ❌ **MoviePage.tsx** - Wrapper de página
 - ❌ **header.utils.ts** - Utilitários do Header
 - ❌ **movieDetails.utils.ts** - Utilitários de detalhes
-
-### **🟢 100% Cobertura (NOVOS)**
-
-- ✅ **Home.tsx** - ⭐ **Página principal (99.04% - 21 testes)** 🆕
 
 ---
 

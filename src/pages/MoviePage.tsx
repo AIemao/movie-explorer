@@ -3,7 +3,7 @@ import { Container } from "../styles/GlobalStyles";
 
 export function MoviePage() {
   return (
-    <Container>
+    <Container data-testid="movie-page">
       <MovieDetails />
     </Container>
   );

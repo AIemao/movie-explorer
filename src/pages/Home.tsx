@@ -210,7 +210,7 @@ export function Home() {
 
   if (loading) {
     return (
-      <HomeContainer>
+      <HomeContainer data-testid="home-page">
         <Container>
           <LoadingSpinner>{LOADING_MESSAGE}</LoadingSpinner>
         </Container>
@@ -220,7 +220,7 @@ export function Home() {
 
   if (error) {
     return (
-      <HomeContainer>
+      <HomeContainer data-testid="home-page">
         <Container>
           <ErrorMessage>{error}</ErrorMessage>
         </Container>
@@ -229,7 +229,7 @@ export function Home() {
   }
 
   return (
-    <HomeContainer>
+    <HomeContainer data-testid="home-page">
       <Container>
         <Title>{PAGE_TITLE}</Title>
 

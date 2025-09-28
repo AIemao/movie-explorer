@@ -89,6 +89,7 @@ export function Header({ onThemeToggle, isDark }: HeaderProps) {
           ))}
         </Nav>
         <ThemeToggle
+          data-testid="theme-toggle"
           onClick={onThemeToggle}
           aria-label={THEME_TOGGLE_ARIA_LABEL}
           title={themeLabel}
