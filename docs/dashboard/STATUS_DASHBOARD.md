@@ -1,7 +1,7 @@
 # 📊 Status Dashboard - Movie Explorer
 
 **Última Atualização:** 28 de setembro de 2025  
-**Branch Ativa:** feature/home-tests-dia6  
+**Branch Ativa:** feature/components-utils-tests-dia8  
 **Workflow:** [DAILY_WORKFLOW_STANDARD](../workflow/DAILY_WORKFLOW_STANDARD.md)
 
 ---
@@ -10,21 +10,21 @@
 
 ### **📈 Cobertura de Testes**
 
-| Métrica             | Valor Atual | Meta    | Status               |
-| ------------------- | ----------- | ------- | -------------------- |
-| **Cobertura Total** | **86.33%**  | 85-100% | 🟢 **META ATINGIDA** |
-| **Componentes**     | **98.81%**  | 85-100% | 🟢 Excelente         |
-| **Serviços (API)**  | **100%**    | 85-100% | 🟢 **CONCLUÍDO**     |
-| **Pages**           | **92.99%**  | 85-100% | 🟢 **META ATINGIDA** |
-| **Utilities**       | **45.87%**  | 85-100% | 🟡 Próximo alvo      |
+| Métrica             | Valor Atual | Meta    | Status                     |
+| ------------------- | ----------- | ------- | -------------------------- |
+| **Cobertura Total** | **91.47%**  | 85-100% | 🟢 **META 90%+ ATINGIDA!** |
+| **Componentes**     | **98.81%**  | 85-100% | 🟢 Excelente               |
+| **Serviços (API)**  | **100%**    | 85-100% | 🟢 **CONCLUÍDO**           |
+| **Pages**           | **92.99%**  | 85-100% | 🟢 **META ATINGIDA**       |
+| **Utilities**       | **94.49%**  | 85-100% | 🟢 **CONCLUÍDO DIA 8**     |
 
 ### **🧪 Estatísticas de Testes**
 
-- **Total de Testes:** 135 (+20 DIA 7)
-- **Arquivos de Teste:** 8
+- **Total de Testes:** 179 (+44 DIA 8)
+- **Arquivos de Teste:** 9
 - **Taxa de Sucesso:** 100% ✅
 - **Ferramentas:** Vitest + Testing Library + MSW
-- **Tempo Médio:** ~15.3s
+- **Tempo Médio:** ~18.7s
 
 ---
 
@@ -110,49 +110,64 @@ _Data: 28/09/2025_
 - **Cobertura:** 68.90% → 86.33% (+17.43%)
 - **Arquivos:** GenrePage.tsx (99.26% Statements, 93.75% Branches, 100% Functions, 99.26% Lines)
 - **Features:** Navigation, API Integration, Load More, Error Handling, Back button
-- **Branch:** `feature/genre-page-tests-dia7` ✅ CONCLUÍDO
-- **📋 Issue:** Criar `RESUMO_EXECUTIVO_DIA7.md`
-- **📋 Issue:** [Resumo Executivo](../reports/daily/issue/RESUMO_EXECUTIVO_DIA6.md)
-- **Foco:** Implementar testes MovieDetails.tsx
-- **Testes:** 20 implementados (74 → 94 total)
-- **Cobertura:** 43.37% → 56.92% (+13.55%)
-- **Arquivos:** MovieDetails.tsx (100% Statements, 95% Branches, 100% Functions, 100% Lines)
-- **Correções:** Tipo Movie.poster_path: string → string | null
-- **Branch:** `feature/movie-details-tests-dia5` ✅ MERGED
-- **📋 Issue:** [Resumo Executivo](../reports/daily/issue/RESUMO_EXECUTIVO_DIA5.md)
+- **Branch:** `feature/genre-page-tests-dia7` ✅ MERGED
+- **📋 Issue:** [Resumo Executivo](../reports/daily/issue/RESUMO_EXECUTIVO_DIA7.md)
+
+### **✅ DIA 8 - Utils Bundle (MARCO HISTÓRICO - 90%+)**
+
+_Data: 28/09/2025_
+
+- **Status:** ✅ CONCLUÍDO
+- **Foco:** Implementar testes para TODOS os utilitários (Bundle completo)
+- **Testes:** 44 implementados (135 → 179 total)
+- **Cobertura:** 86.33% → 91.47% (+5.14%)
+- **🏆 MARCO:** Primeira vez acima de 90% cobertura geral!
+- **Arquivos:**
+  - `categoryList.utils.ts` (100% - 8 testes)
+  - `header.utils.ts` (100% - 6 testes)
+  - `movieCard.utils.ts` (90.62% - 12 testes)
+  - `movieDetails.utils.ts` (93.75% - 14 testes)
+- **Features:** Slug generation, Date formatting, Error handling, Budget formatting
+- **Branch:** `feature/components-utils-tests-dia8` ✅ EM PROGRESSO
+- **📋 Issue:** Criar `RESUMO_EXECUTIVO_DIA8.md`
 
 ---
 
-## 🎯 **Próximos Alvos (DIA 7-11)**
+## 🎯 **Próximos Alvos (DIA 9-12)**
 
 ### **🔥 PRIORIDADE ALTA**
 
-### **⚡ PRÓXIMOS ALVOS**
-
-| DIA   | Arquivo           | Cobertura Atual | Meta    | Estimativa   |
-| ----- | ----------------- | --------------- | ------- | ------------ |
-| **7** | **GenrePage.tsx** | 0%              | 85-100% | 15-18 testes |
-| **8** | **App.tsx**       | 0%              | 85-100% | 8-10 testes  |
+| DIA    | Arquivo                | Cobertura Atual | Meta    | Estimativa  |
+| ------ | ---------------------- | --------------- | ------- | ----------- |
+| **9**  | **App.tsx**            | 0%              | 85-100% | 8-10 testes |
+| **10** | **CategoriesPage.tsx** | 0%              | 85-100% | 6-8 testes  |
+| **11** | **MoviePage.tsx**      | 0%              | 85-100% | 6-8 testes  |
 
 ### **⚡ PRIORIDADE MÉDIA**
 
-| DIA    | Arquivo             | Cobertura Atual | Meta    | Estimativa   |
-| ------ | ------------------- | --------------- | ------- | ------------ |
-| **9**  | **Utils restantes** | Varia           | 85-100% | 10-12 testes |
-| **10** | **Pages menores**   | 0%              | 85-100% | 6-8 testes   |
-| **11** | **Integration E2E** | 0%              | 70-85%  | 8-10 testes  |
+| DIA    | Arquivo                       | Cobertura Atual | Meta    | Estimativa  |
+| ------ | ----------------------------- | --------------- | ------- | ----------- |
+| **12** | **Constants baixa cobertura** | Varia           | 85-100% | 4-6 testes  |
+| **13** | **Pages utils restantes**     | Varia           | 85-100% | 6-8 testes  |
+| **14** | **Integration E2E**           | 0%              | 70-85%  | 8-10 testes |
 
 ---
 
 ## 🏆 **Conquistas Recentes**
 
-### **🎉 ÚLTIMOS SUCESSOS (DIA 7) - MARCO HISTÓRICO**
+### **🎉 ÚLTIMOS SUCESSOS (DIA 8) - MARCO HISTÓRICO 90%+**
 
-1. 🏆 **GenrePage.tsx - 99.26% cobertura** (20 testes: Navigation + API + Load More + Error Handling) **DESTAQUE**
-2. 🎯 **META DE 85% COBERTURA GERAL ATINGIDA** - 86.33% cobertura total alcançada
-3. 📈 **SALTO GIGANTE** - De 68.90% para 86.33% (+17.43% em um dia)
-4. 🧪 **135 Testes Passando** - Crescimento de 115 para 135 testes (+20 testes)
-5. 🎊 **PAGES 92.99%** - Categoria Pages atingiu meta (Home + GenrePage completos)
+1. 🏆 **FIRST TIME 90%+ COVERAGE!** - 91.47% cobertura geral atingida!
+2. 🧰 **UTILS BUNDLE COMPLETO** - 4 arquivos utils testados em um dia (44 testes)
+3. 📈 **SALTO ESTRATÉGICO** - De 86.33% para 91.47% (+5.14% utils impact)
+4. 🧪 **179 Testes Passando** - Crescimento de 135 para 179 testes (+44 testes)
+5. 🎯 **UTILITIES 94.49%** - De 45.87% para 94.49% (+48.62% em um dia!)
+
+### **✅ Sucessos DIA 7**
+
+1. 🏆 **GenrePage.tsx - 99.26% cobertura** (20 testes)
+2. 🎯 **META DE 85% ATINGIDA** - 86.33% cobertura total
+3. 📈 **SALTO ÉPICO** - +17.43% em um dia
 
 ### **✅ Sucessos Anteriores (DIA 6)**
 
