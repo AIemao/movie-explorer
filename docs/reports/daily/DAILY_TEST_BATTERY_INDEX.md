@@ -285,7 +285,8 @@ Os resumos executivos servem como **encerramentos formais** das issues/tarefas:
 | **5** | Implementar testes MovieDetails.tsx | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA5.md](issue/RESUMO_EXECUTIVO_DIA5.md) |
 | **6** | Implementar testes Home.tsx         | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA6.md](issue/RESUMO_EXECUTIVO_DIA6.md) |
 | **7** | Implementar testes GenrePage.tsx    | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA7.md](issue/RESUMO_EXECUTIVO_DIA7.md) |
-| **8** | Implementar Utils Bundle completo   | 🔄 PRÓXIMO   | -                                                          |
+| **8** | Implementar Utils Bundle completo   | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA8.md](issue/RESUMO_EXECUTIVO_DIA8.md) |
+| **9** | Implementar testes App.tsx          | 🔄 PRÓXIMO   | -                                                          |
 
 **📋 [Ver todos os resumos →](issue/README.md)**
 
