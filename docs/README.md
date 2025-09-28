@@ -2,6 +2,10 @@
 
 Bem-vindo à documentação completa do projeto Movie Explorer! Aqui você encontra toda a informação organizada sobre desenvolvimento, testes, workflow e progresso do projeto.
 
+## 🗂️ **[📋 Guia de Estrutura da Documentação](DOCS_STRUCTURE_GUIDE.md)**
+
+**NOVO!** Guia completo explicando a organização, responsabilidades e padrões de todos os arquivos e pastas da documentação.
+
 ---
 
 ## 📊 **Dashboard Principal**
