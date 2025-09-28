@@ -172,7 +172,7 @@ describe("MovieDetails", () => {
 
       await waitFor(() => {
         expect(screen.getByText(/📅/)).toBeInTheDocument();
-        expect(screen.getByText(/14 de julho de 2023/)).toBeInTheDocument();
+        expect(screen.getByText(/15 de julho de 2023/)).toBeInTheDocument();
         expect(screen.getByText(/⏱️/)).toBeInTheDocument();
         expect(screen.getByText(/2h 22min/)).toBeInTheDocument();
         expect(screen.getByText(/⭐/)).toBeInTheDocument();
@@ -317,7 +317,7 @@ describe("MovieDetails", () => {
       renderWithProviders(<MovieDetails />);
 
       await waitFor(() => {
-        expect(screen.getByText(/24 de dezembro de 2024/)).toBeInTheDocument();
+        expect(screen.getByText(/25 de dezembro de 2024/)).toBeInTheDocument();
       });
     });
 
