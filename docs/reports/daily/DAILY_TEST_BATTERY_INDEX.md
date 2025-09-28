@@ -172,17 +172,30 @@ Este documento mantém o registro completo de todos os dias de desenvolvimento o
 
 ---
 
-### **🎯 DIA 8** - Utilities & App.tsx (Próximo)
+### **🏆 DIA 8** - Utils Bundle **MARCO HISTÓRICO 90%+**
 
-**Status:** 🔄 Planejado  
-**Objetivo:** Atingir **90%+ cobertura geral** (atual: 86.33%, faltam 3.67%)
+**Status:** ✅ CONCLUÍDO **PRIMEIRA VEZ 90%+**  
+**Arquivo:** [`DAILY_TEST_BATTERY_REPORT_DIA8.md`](DAILY_TEST_BATTERY_REPORT_DIA8.md)  
+**Data:** 28 de setembro de 2025  
+**Branch:** feature/components-utils-tests-dia8  
+**Commit:** [Pendente] - feat(tests): implementa bundle completo utils com 91.47% cobertura
 
-**Alvos Prioritários:**
+**🎯 MARCO HISTÓRICO ATINGIDO:**
 
-- **Utilities:** 45.87% → 85%+ (movieDetails, movieCard, categoryList, header utils)
-- **App.tsx:** 0% → 85%+ (roteamento, tema, providers)
+- ✅ **PRIMEIRA VEZ 90%+ COBERTURA GERAL** - 91.47% atingida!
+- ✅ **Utils Bundle Strategy** - 4 arquivos testados simultaneamente
+- ✅ 44 testes implementados (135 → 179 total)
+- ✅ **Utilities:** 45.87% → 94.49% (+48.62% em um dia!)
 
-**Meta Final:** **90%+ Cobertura Geral**
+**Arquivos Testados:**
+
+- ✅ `categoryList.utils.ts` - 100% cobertura (8 testes)
+- ✅ `header.utils.ts` - 100% cobertura (6 testes)
+- ✅ `movieCard.utils.ts` - 90.62% cobertura (12 testes)
+- ✅ `movieDetails.utils.ts` - 93.75% cobertura (14 testes)
+- ✅ Cross-utils integration (4 testes)
+
+**📋 Issue:** [Resumo Executivo DIA 8](issue/RESUMO_EXECUTIVO_DIA8.md) _(a criar)_
 
 ---
 
@@ -271,7 +284,8 @@ Os resumos executivos servem como **encerramentos formais** das issues/tarefas:
 | **4** | Implementar testes tmdb.ts com MSW  | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA4.md](issue/RESUMO_EXECUTIVO_DIA4.md) |
 | **5** | Implementar testes MovieDetails.tsx | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA5.md](issue/RESUMO_EXECUTIVO_DIA5.md) |
 | **6** | Implementar testes Home.tsx         | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA6.md](issue/RESUMO_EXECUTIVO_DIA6.md) |
-| **7** | Implementar testes GenrePage.tsx    | 🔄 PRÓXIMO   | -                                                          |
+| **7** | Implementar testes GenrePage.tsx    | ✅ CONCLUÍDO | [RESUMO_EXECUTIVO_DIA7.md](issue/RESUMO_EXECUTIVO_DIA7.md) |
+| **8** | Implementar Utils Bundle completo   | 🔄 PRÓXIMO   | -                                                          |
 
 **📋 [Ver todos os resumos →](issue/README.md)**
 
