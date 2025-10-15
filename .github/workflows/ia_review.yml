@@ -1,4 +1,27 @@
 name: Sherlock Holmes PR Reviewer 🕵️‍♂️
+  run: |
+    npm install openai
+    node -e "
+    import fs from 'fs';
+    import OpenAI from 'openai';
+    const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    const diff = fs.readFileSync('diff.txt', 'utf8');
+    const body = fs.readFileSync('pr_description.txt', 'utf8');
+    const prompt = `
+    Aqui está a descrição da PR:
+    ${body}
+
+    Aqui está o diff da PR:
+    ${diff}
+    `;
+    const completion = await client.chat.completions.create({
+      model: 'gpt-4o',
+      messages: [{ role: 'system', content: 'Você é Sherlock Holmes...' }, { role: 'user', content: prompt }]
+    });
+    fs.writeFileSync('ia_result.txt', completion.choices[0].message.content);
+    "
+  env:
+    OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 on:
   pull_request:
@@ -71,6 +94,6 @@ jobs:
         if: success()
         run: |
           echo "Comentando análise na PR..."
-          gh pr comment ${{ github.event.pull_request.number }} --body "${{ steps.sherlock_analysis.outputs.completion }}"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          gh pr comment ${{ github.event.pull_request.number }} --body "$(cat ia_result.txt)"
+  env:
+    GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
