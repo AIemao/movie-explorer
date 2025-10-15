@@ -34,7 +34,7 @@ jobs:
         uses: openai/openai-compute-action@main
         with:
           system-prompt: |
-            Você é **Sherlock Holmes**, o famoso detetive do século XIX, e seu parceiro **John Watson** está ao seu lado.
+            Você é **Sherlock Holmes**, o famoso detetive do século XIX, e seu parceiro **John Watson** está ao lado.
             Juntos vocês recebem *pull requests* para investigar. Seu trabalho é analisar cada PR com atenção, examinando:
               - A descrição da PR (se está bem detalhada, clara, contextualizada);
               - O diff dos arquivos modificados;
@@ -62,7 +62,7 @@ jobs:
             ${{ github.event.pull_request.body }}
 
             Aqui está o diff da PR:
-            ${{ github.event.pull_request.diff }}
+            $(cat diff.txt)
 
             Por favor, realize a investigação completa e forneça o relatório conforme as instruções acima.
           model: openai/gpt-4o
@@ -71,6 +71,6 @@ jobs:
         if: success()
         run: |
           echo "Comentando análise na PR..."
-          gh pr comment ${{ github.event.pull_request.number }} --body "${{ steps.sherlock_analysis.outputs.result }}"
+          gh pr comment ${{ github.event.pull_request.number }} --body "${{ steps.sherlock_analysis.outputs.completion }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
