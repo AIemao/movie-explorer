@@ -18,7 +18,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 🔎 Coletar informações da PR
+      - name: � Verificar Secret da OpenAI
+        run: |
+          if [ -z "${{ secrets.OPENAI_API_KEY }}" ]; then
+            echo "❌ ERRO: Secret OPENAI_API_KEY não está configurado!"
+            echo ""
+            echo "Para configurar:"
+            echo "1. Vá em Settings → Secrets and variables → Actions"
+            echo "2. Clique em 'New repository secret'"
+            echo "3. Nome: OPENAI_API_KEY"
+            echo "4. Value: sua chave da OpenAI (começa com sk-)"
+            echo ""
+            echo "Obtenha sua chave em: https://platform.openai.com/api-keys"
+            exit 1
+          else
+            echo "✅ Secret OPENAI_API_KEY encontrado!"
+          fi
+
+      - name: �🔎 Coletar informações da PR
         id: pr_info
         run: |
           echo "Coletando informações da PR #${{ github.event.pull_request.number }}..."
@@ -144,23 +161,75 @@ jobs:
               with open('response.json', 'r') as f:
                   response = json.load(f)
               
+              # Debug: mostrar resposta completa
+              print("=== DEBUG: Resposta da API ===", file=sys.stderr)
+              print(json.dumps(response, indent=2), file=sys.stderr)
+              print("=" * 50, file=sys.stderr)
+              
               if 'error' in response:
-                  print(f"❌ Erro da API OpenAI: {response['error'].get('message', 'Erro desconhecido')}")
+                  error_msg = response['error'].get('message', 'Erro desconhecido')
+                  error_type = response['error'].get('type', 'unknown')
+                  print(f"❌ Erro da API OpenAI ({error_type}): {error_msg}")
+                  
+                  # Mensagens de ajuda específicas
+                  if 'invalid_api_key' in error_type or 'authentication' in error_msg.lower():
+                      print("\n💡 Dica: Verifique se o secret OPENAI_API_KEY está configurado corretamente.")
+                      print("   A chave deve começar com 'sk-' e estar ativa.")
+                  elif 'insufficient_quota' in error_type or 'quota' in error_msg.lower():
+                      print("\n💡 Dica: Sua conta OpenAI não tem créditos suficientes.")
+                      print("   Adicione créditos em: https://platform.openai.com/account/billing")
+                  elif 'model_not_found' in error_type:
+                      print("\n💡 Dica: O modelo 'gpt-4o' pode não estar disponível para sua conta.")
+                      print("   Tente usar 'gpt-4o-mini' ou 'gpt-3.5-turbo'.")
+                  
                   sys.exit(1)
               
-              analysis = response.get('choices', [{}])[0].get('message', {}).get('content', 'Erro ao processar análise')
+              if 'choices' not in response or len(response.get('choices', [])) == 0:
+                  print("❌ Resposta da API não contém análise")
+                  print(f"Resposta recebida: {json.dumps(response, indent=2)}")
+                  sys.exit(1)
+              
+              analysis = response.get('choices', [{}])[0].get('message', {}).get('content', '')
+              
+              if not analysis:
+                  print("❌ Análise vazia retornada pela API")
+                  sys.exit(1)
+              
               print(analysis)
+              
+          except json.JSONDecodeError as e:
+              print(f"❌ Erro ao decodificar JSON: {str(e)}")
+              print("\n💡 Dica: A resposta da API não está em formato JSON válido.")
+              print("Isso geralmente indica um problema de conexão ou erro no servidor da OpenAI.")
+              with open('response.json', 'r') as f:
+                  print(f"\nResposta raw: {f.read()[:500]}...")
+              sys.exit(1)
+          except FileNotFoundError:
+              print("❌ Arquivo response.json não encontrado")
+              sys.exit(1)
           except Exception as e:
               print(f"❌ Erro ao processar resposta: {str(e)}")
+              import traceback
+              traceback.print_exc()
               sys.exit(1)
           PYTHON_EOF
 
           # Extrair a análise
-          ANALYSIS=$(python3 extract_analysis.py)
+          ANALYSIS=$(python3 extract_analysis.py 2>&1)
+          EXIT_CODE=$?
 
           # Verificar se houve erro
-          if [ $? -ne 0 ]; then
-            echo "Erro ao extrair análise. Resposta da API:"
+          if [ $EXIT_CODE -ne 0 ]; then
+            echo ""
+            echo "=========================================="
+            echo "❌ FALHA NA ANÁLISE DA IA"
+            echo "=========================================="
+            echo ""
+            echo "$ANALYSIS"
+            echo ""
+            echo "=========================================="
+            echo "📋 Resposta completa da API:"
+            echo "=========================================="
             cat response.json
             exit 1
           fi
