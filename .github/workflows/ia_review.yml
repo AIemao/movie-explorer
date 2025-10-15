@@ -1,0 +1,139 @@
+name: Sherlock Holmes PR Reviewer 🕵️‍♂️
+
+on:
+    pull_request:
+        types: [opened, edited, synchronize, reopened]
+
+jobs:
+    ai_review:
+        name: "Sherlock Holmes & Dr. Watson Investigam"
+        runs-on: ubuntu-latest
+        permissions:
+            pull-requests: write
+            contents: read
+
+        steps:
+            - name: 🧩 Checkout do Código
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: 🔎 Coletar informações da PR
+              id: pr_info
+              run: |
+                  echo "Coletando informações da PR #${{ github.event.pull_request.number }}..."
+
+                  # Salvar título
+                  echo "TITLE<<EOF" >> $GITHUB_ENV
+                  echo "${{ github.event.pull_request.title }}" >> $GITHUB_ENV
+                  echo "EOF" >> $GITHUB_ENV
+
+                  # Salvar descrição
+                  echo "BODY<<EOF" >> $GITHUB_ENV
+                  echo "${{ github.event.pull_request.body }}" >> $GITHUB_ENV
+                  echo "EOF" >> $GITHUB_ENV
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: 📝 Baixar Diff da Pull Request
+              id: diff
+              run: |
+                  echo "Coletando diff da PR..."
+                  gh pr diff ${{ github.event.pull_request.number }} > diff.txt
+
+                  # Limitar o tamanho do diff para não exceder limites da API
+                  if [ $(wc -c < diff.txt) -gt 50000 ]; then
+                    echo "DIFF<<EOF" >> $GITHUB_ENV
+                    head -c 50000 diff.txt >> $GITHUB_ENV
+                    echo -e "\n\n... (diff truncado por limite de tamanho)" >> $GITHUB_ENV
+                    echo "EOF" >> $GITHUB_ENV
+                  else
+                    echo "DIFF<<EOF" >> $GITHUB_ENV
+                    cat diff.txt >> $GITHUB_ENV
+                    echo "EOF" >> $GITHUB_ENV
+                  fi
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: 🧠 Análise com IA (Sherlock & Watson)
+              id: sherlock_analysis
+              run: |
+                  echo "Enviando análise para a IA..."
+
+                  # Criar o prompt completo
+                  cat > prompt.json << 'PROMPT_EOF'
+                  {
+                    "model": "gpt-4o",
+                    "messages": [
+                      {
+                        "role": "system",
+                        "content": "Você é **Sherlock Holmes**, o famoso detetive do século XIX, e seu parceiro **John Watson** está ao seu lado. Juntos vocês recebem pull requests para investigar.\n\nSeu trabalho é analisar cada PR com atenção, examinando:\n- A descrição da PR (se está bem detalhada, clara, contextualizada);\n- O diff dos arquivos modificados;\n- Se está faltando testes ou tipos TypeScript;\n- Se o código segue padrões modernos e clean code, simplicidade e clareza.\n\nVocês devem retornar um relatório que contenha:\n1. Uma saudação cordial (\"Caro desenvolvedor,\" ou algo no estilo Sherlock/Watson);\n2. Apreciação pelo esforço (\"Obrigado por submeter este código,\" etc.);\n3. Avaliação da descrição da PR: pontos fortes e onde melhorar;\n4. Análise do código modificado: elogios, achados, alertas se faltar tests ou TypeScript;\n5. Sugestões de melhoria concretas, sempre que possível;\n6. Se tudo estiver em ordem, elogio final;\n7. Se algo estiver faltando (ex: sem testes ou TS), indicar que o PR **não poderá ser aprovado** até que isso seja corrigido.\n\nO tom deve ser educado, com leve humor dedutivo, e referências ao tema (Sherlock & Watson) são bem-vindas (\"Watson notou que…\", \"Holmes acredita que…\"). Use linguagem natural e narrativa envolvente, mas mantenha clareza técnica. Evite respostas excessivamente longas, foque em insights úteis para o desenvolvedor."
+                      },
+                      {
+                        "role": "user",
+                        "content": "Aqui está a Pull Request para investigação:\n\n## TÍTULO DA PR:\n$TITLE\n\n## DESCRIÇÃO DA PR:\n$BODY\n\n## DIFF DA PR:\n```diff\n$DIFF\n```\n\nPor favor, realize a investigação completa e forneça o relatório conforme as instruções acima."
+                      }
+                    ],
+                    "temperature": 0.7,
+                    "max_tokens": 2000
+                  }
+                  PROMPT_EOF
+
+                  # Substituir variáveis no JSON
+                  export TITLE="${{ env.TITLE }}"
+                  export BODY="${{ env.BODY }}"
+                  export DIFF="${{ env.DIFF }}"
+
+                  # Escapar e inserir as variáveis no JSON
+                  jq --arg title "$TITLE" \
+                     --arg body "$BODY" \
+                     --arg diff "$DIFF" \
+                     '.messages[1].content = "Aqui está a Pull Request para investigação:\n\n## TÍTULO DA PR:\n" + $title + "\n\n## DESCRIÇÃO DA PR:\n" + $body + "\n\n## DIFF DA PR:\n```diff\n" + $diff + "\n```\n\nPor favor, realize a investigação completa e forneça o relatório conforme as instruções acima."' \
+                     prompt.json > final_prompt.json
+
+                  # Fazer a chamada para a API da OpenAI
+                  RESPONSE=$(curl -s https://api.openai.com/v1/chat/completions \
+                    -H "Content-Type: application/json" \
+                    -H "Authorization: Bearer ${{ secrets.OPENAI_API_KEY }}" \
+                    -d @final_prompt.json)
+
+                  # Extrair a resposta
+                  echo "$RESPONSE" > response.json
+                  ANALYSIS=$(echo "$RESPONSE" | jq -r '.choices[0].message.content // "Erro ao processar análise"')
+
+                  # Salvar análise para o próximo step
+                  echo "ANALYSIS<<EOF" >> $GITHUB_ENV
+                  echo "$ANALYSIS" >> $GITHUB_ENV
+                  echo "EOF" >> $GITHUB_ENV
+
+                  echo "Análise concluída!"
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: 💬 Comentar na PR
+              if: success()
+              run: |
+                  echo "Publicando análise na PR..."
+
+                  # Criar comentário formatado
+                  cat > comment.md << 'COMMENT_EOF'
+                  ## 🕵️‍♂️ Investigação de Sherlock Holmes & Dr. Watson
+
+                  ${{ env.ANALYSIS }}
+
+                  ---
+                  *Análise automática gerada por IA • Sherlock Holmes PR Reviewer*
+                  COMMENT_EOF
+
+                  # Postar comentário
+                  gh pr comment ${{ github.event.pull_request.number }} --body-file comment.md
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: ⚠️ Tratamento de Erros
+              if: failure()
+              run: |
+                  echo "Houve um erro durante a análise. Verifique os logs acima."
+                  gh pr comment ${{ github.event.pull_request.number }} --body "⚠️ **Atenção**: A análise automática de Sherlock Holmes encontrou um problema técnico. Por favor, revise manualmente esta PR."
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
