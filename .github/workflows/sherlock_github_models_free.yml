@@ -1,0 +1,215 @@
+name: 🔶 Sherlock (GitHub Models) - GRÁTIS
+
+on:
+    pull_request:
+        types: [opened, edited, synchronize, reopened]
+
+jobs:
+    ai_review:
+        name: "Holmes & Watson via GitHub Models 🆓"
+        runs-on: ubuntu-latest
+        permissions:
+            pull-requests: write
+            contents: read
+
+        steps:
+            - name: 🧩 Checkout do Código
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: 🔎 Coletar informações da PR
+              id: pr_info
+              run: |
+                  echo "Coletando informações da PR #${{ github.event.pull_request.number }}..."
+
+                  # Salvar título
+                  echo "TITLE<<EOF" >> $GITHUB_ENV
+                  echo "${{ github.event.pull_request.title }}" >> $GITHUB_ENV
+                  echo "EOF" >> $GITHUB_ENV
+
+                  # Salvar descrição
+                  echo "BODY<<EOF" >> $GITHUB_ENV
+                  echo "${{ github.event.pull_request.body }}" >> $GITHUB_ENV
+                  echo "EOF" >> $GITHUB_ENV
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: 📝 Baixar Diff da Pull Request
+              id: diff
+              run: |
+                  echo "Coletando diff da PR..."
+                  gh pr diff ${{ github.event.pull_request.number }} > diff.txt
+
+                  # Limitar o tamanho do diff para não exceder limites da API
+                  if [ $(wc -c < diff.txt) -gt 30000 ]; then
+                    echo "DIFF<<EOF" >> $GITHUB_ENV
+                    head -c 30000 diff.txt >> $GITHUB_ENV
+                    echo -e "\n\n... (diff truncado por limite de tamanho)" >> $GITHUB_ENV
+                    echo "EOF" >> $GITHUB_ENV
+                  else
+                    echo "DIFF<<EOF" >> $GITHUB_ENV
+                    cat diff.txt >> $GITHUB_ENV
+                    echo "EOF" >> $GITHUB_ENV
+                  fi
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: 🧠 Análise com IA (Sherlock & Watson) - GitHub Models GRÁTIS
+              id: sherlock_analysis
+              run: |
+                  echo "Enviando análise para a IA usando GitHub Models (GRÁTIS)..."
+
+                  # Criar script Python para gerar o payload JSON
+                  cat > create_payload.py << 'PYTHON_EOF'
+                  import json
+                  import os
+
+                  title = os.environ.get('TITLE', '')
+                  body = os.environ.get('BODY', '')
+                  diff = os.environ.get('DIFF', '')
+
+                  system_prompt = """Você é **Sherlock Holmes**, o famoso detetive do século XIX, e seu parceiro **John Watson** está ao seu lado. Juntos vocês recebem pull requests para investigar.
+
+                  Seu trabalho é analisar cada PR com atenção, examinando:
+                  - A descrição da PR (se está bem detalhada, clara, contextualizada);
+                  - O diff dos arquivos modificados;
+                  - Se está faltando testes ou tipos TypeScript;
+                  - Se o código segue padrões modernos e clean code, simplicidade e clareza.
+
+                  Vocês devem retornar um relatório que contenha:
+                  1. Uma saudação cordial ("Caro desenvolvedor," ou algo no estilo Sherlock/Watson);
+                  2. Apreciação pelo esforço ("Obrigado por submeter este código," etc.);
+                  3. Avaliação da descrição da PR: pontos fortes e onde melhorar;
+                  4. Análise do código modificado: elogios, achados, alertas se faltar tests ou TypeScript;
+                  5. Sugestões de melhoria concretas, sempre que possível;
+                  6. Se tudo estiver em ordem, elogio final;
+                  7. Se algo estiver faltando (ex: sem testes ou TS), indicar que o PR **não poderá ser aprovado** até que isso seja corrigido.
+
+                  O tom deve ser educado, com leve humor dedutivo, e referências ao tema (Sherlock & Watson) são bem-vindas ("Watson notou que…", "Holmes acredita que…"). Use linguagem natural e narrativa envolvente, mas mantenha clareza técnica. Evite respostas excessivamente longas, foque em insights úteis para o desenvolvedor."""
+
+                  user_prompt = f"""Aqui está a Pull Request para investigação:
+
+                  ## TÍTULO DA PR:
+                  {title}
+
+                  ## DESCRIÇÃO DA PR:
+                  {body if body else '(Sem descrição fornecida)'}
+
+                  ## DIFF DA PR:
+                  ```diff
+                  {diff[:20000]}
+                  ```
+
+                  Por favor, realize a investigação completa e forneça o relatório conforme as instruções acima."""
+
+                  payload = {
+                      "messages": [
+                          {
+                              "role": "system",
+                              "content": system_prompt
+                          },
+                          {
+                              "role": "user",
+                              "content": user_prompt
+                          }
+                      ],
+                      "temperature": 0.7,
+                      "max_tokens": 2000
+                  }
+
+                  print(json.dumps(payload, ensure_ascii=False, indent=2))
+                  PYTHON_EOF
+
+                  # Gerar o payload JSON
+                  python3 create_payload.py > payload.json
+
+                  # Fazer a chamada para a API do GitHub Models (GRATUITA!)
+                  RESPONSE=$(curl -s https://models.inference.ai.azure.com/chat/completions \
+                    -H "Content-Type: application/json" \
+                    -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                    -d "$(cat payload.json | jq '. + {model: "gpt-4o"}')")
+
+                  # Salvar a resposta completa para debug
+                  echo "$RESPONSE" > response.json
+
+                  # Criar script Python para extrair a análise
+                  cat > extract_analysis.py << 'PYTHON_EOF'
+                  import json
+                  import sys
+
+                  try:
+                      with open('response.json', 'r') as f:
+                          response = json.load(f)
+                      
+                      if 'error' in response:
+                          error_msg = response['error'].get('message', 'Erro desconhecido')
+                          print(f"❌ Erro da API: {error_msg}")
+                          print("\n💡 Dica: Usando GitHub Models (grátis com GitHub Copilot)")
+                          print("   Se não funcionar, considere alternativas gratuitas como Gemini.")
+                          sys.exit(1)
+                      
+                      if 'choices' not in response or len(response.get('choices', [])) == 0:
+                          print("❌ Resposta da API não contém análise")
+                          sys.exit(1)
+                      
+                      analysis = response.get('choices', [{}])[0].get('message', {}).get('content', '')
+                      
+                      if not analysis:
+                          print("❌ Análise vazia retornada pela API")
+                          sys.exit(1)
+                      
+                      print(analysis)
+                      
+                  except Exception as e:
+                      print(f"❌ Erro: {str(e)}")
+                      sys.exit(1)
+                  PYTHON_EOF
+
+                  # Extrair a análise
+                  ANALYSIS=$(python3 extract_analysis.py 2>&1)
+                  EXIT_CODE=$?
+
+                  if [ $EXIT_CODE -ne 0 ]; then
+                    echo "❌ FALHA: $ANALYSIS"
+                    echo "Resposta da API:"
+                    cat response.json
+                    exit 1
+                  fi
+
+                  # Salvar análise
+                  echo "ANALYSIS<<EOF" >> $GITHUB_ENV
+                  echo "$ANALYSIS" >> $GITHUB_ENV
+                  echo "EOF" >> $GITHUB_ENV
+
+                  echo "✅ Análise concluída com sucesso usando GitHub Models (GRÁTIS)!"
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  TITLE: ${{ env.TITLE }}
+                  BODY: ${{ env.BODY }}
+                  DIFF: ${{ env.DIFF }}
+
+            - name: 💬 Comentar na PR
+              if: success()
+              run: |
+                  echo "Publicando análise na PR..."
+
+                  cat > comment.md << 'COMMENT_EOF'
+                  ## � Investigação de Sherlock Holmes & Dr. Watson (via GitHub Models)
+
+                  ${{ env.ANALYSIS }}
+
+                  ---
+                  *✨ Análise por **GitHub Models** (Grátis com Copilot!) • Modelo: gpt-4o*
+                  COMMENT_EOF
+
+                  gh pr comment ${{ github.event.pull_request.number }} --body-file comment.md
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: ⚠️ Tratamento de Erros
+              if: failure()
+              run: |
+                  gh pr comment ${{ github.event.pull_request.number }} --body "⚠️ **Atenção**: A análise automática encontrou um problema. Veja os logs em Actions."
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

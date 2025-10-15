@@ -1,0 +1,177 @@
+name: 🔷 Sherlock (Gemini) - GRÁTIS
+
+on:
+    pull_request:
+        types: [opened, edited, synchronize, reopened]
+
+jobs:
+    ai_review:
+        name: "Holmes & Watson via Google Gemini 🆓"
+        runs-on: ubuntu-latest
+        permissions:
+            pull-requests: write
+            contents: read
+
+        steps:
+            - name: 🧩 Checkout do Código
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: 🔎 Coletar informações da PR
+              run: |
+                  echo "TITLE<<EOF" >> $GITHUB_ENV
+                  echo "${{ github.event.pull_request.title }}" >> $GITHUB_ENV
+                  echo "EOF" >> $GITHUB_ENV
+
+                  echo "BODY<<EOF" >> $GITHUB_ENV
+                  echo "${{ github.event.pull_request.body }}" >> $GITHUB_ENV
+                  echo "EOF" >> $GITHUB_ENV
+
+            - name: 📝 Baixar Diff da Pull Request
+              run: |
+                  gh pr diff ${{ github.event.pull_request.number }} > diff.txt
+
+                  if [ $(wc -c < diff.txt) -gt 20000 ]; then
+                    echo "DIFF<<EOF" >> $GITHUB_ENV
+                    head -c 20000 diff.txt >> $GITHUB_ENV
+                    echo -e "\n... (truncado)" >> $GITHUB_ENV
+                    echo "EOF" >> $GITHUB_ENV
+                  else
+                    echo "DIFF<<EOF" >> $GITHUB_ENV
+                    cat diff.txt >> $GITHUB_ENV
+                    echo "EOF" >> $GITHUB_ENV
+                  fi
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: 🧠 Análise com Google Gemini (100% GRÁTIS!)
+              run: |
+                  echo "🆓 Usando Google Gemini API (TOTALMENTE GRÁTIS!)"
+
+                  cat > analyze.py << 'PYTHON_EOF'
+                  import json
+                  import os
+                  import urllib.request
+                  import urllib.error
+
+                  # Pegar variáveis
+                  title = os.environ.get('TITLE', '')
+                  body = os.environ.get('BODY', '')
+                  diff = os.environ.get('DIFF', '')
+                  api_key = os.environ.get('GEMINI_API_KEY', '')
+
+                  if not api_key:
+                      print("❌ Secret GEMINI_API_KEY não configurado!")
+                      print("\n📝 Configure assim:")
+                      print("1. Acesse: https://aistudio.google.com/app/apikey")
+                      print("2. Clique em 'Create API Key' (GRÁTIS!)")
+                      print("3. Copie a chave")
+                      print("4. No GitHub: Settings → Secrets → New secret")
+                      print("5. Nome: GEMINI_API_KEY")
+                      print("6. Cole a chave")
+                      exit(1)
+
+                  # Montar prompt
+                  prompt = f"""Você é **Sherlock Holmes**, o famoso detetive, com seu parceiro **Dr. Watson**. 
+                  Analisem esta Pull Request:
+
+                  **TÍTULO:** {title}
+
+                  **DESCRIÇÃO:** {body if body else '(Sem descrição)'}
+
+                  **ALTERAÇÕES:**
+                  ```diff
+                  {diff[:15000]}
+                  ```
+
+                  Retornem um relatório estilo Sherlock/Watson com:
+                  1. Saudação cordial
+                  2. Avaliação da descrição da PR
+                  3. Análise do código (elogios, alertas sobre testes/TypeScript faltando)
+                  4. Sugestões concretas
+                  5. Aprovação ou pedido de correções
+
+                  Tom: Educado, dedutivo, com referências a Holmes/Watson. Seja breve mas útil."""
+
+                  # Payload para Gemini
+                  payload = {
+                      "contents": [{
+                          "parts": [{"text": prompt}]
+                      }],
+                      "generationConfig": {
+                          "temperature": 0.7,
+                          "maxOutputTokens": 2000
+                      }
+                  }
+
+                  # Chamar API do Gemini
+                  url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
+
+                  req = urllib.request.Request(
+                      url,
+                      data=json.dumps(payload).encode('utf-8'),
+                      headers={'Content-Type': 'application/json'}
+                  )
+
+                  try:
+                      with urllib.request.urlopen(req) as response:
+                          result = json.loads(response.read().decode('utf-8'))
+                          
+                          if 'candidates' in result and len(result['candidates']) > 0:
+                              analysis = result['candidates'][0]['content']['parts'][0]['text']
+                              print(analysis)
+                          else:
+                              print("❌ Resposta inesperada da API Gemini")
+                              print(json.dumps(result, indent=2))
+                              exit(1)
+                              
+                  except urllib.error.HTTPError as e:
+                      error_body = e.read().decode('utf-8')
+                      print(f"❌ Erro HTTP {e.code}: {error_body}")
+                      exit(1)
+                  except Exception as e:
+                      print(f"❌ Erro: {str(e)}")
+                      exit(1)
+                  PYTHON_EOF
+
+                  ANALYSIS=$(python3 analyze.py)
+
+                  if [ $? -ne 0 ]; then
+                    echo "$ANALYSIS"
+                    exit 1
+                  fi
+
+                  echo "ANALYSIS<<EOF" >> $GITHUB_ENV
+                  echo "$ANALYSIS" >> $GITHUB_ENV
+                  echo "EOF" >> $GITHUB_ENV
+
+                  echo "✅ Análise concluída com Google Gemini (GRÁTIS)!"
+              env:
+                  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+                  TITLE: ${{ env.TITLE }}
+                  BODY: ${{ env.BODY }}
+                  DIFF: ${{ env.DIFF }}
+
+            - name: 💬 Comentar na PR
+              if: success()
+              run: |
+                  cat > comment.md << 'COMMENT_EOF'
+                  ## � Investigação de Sherlock Holmes & Dr. Watson (via Google Gemini)
+
+                  ${{ env.ANALYSIS }}
+
+                  ---
+                  *✨ Análise por **Google Gemini** (100% Grátis!) • Modelo: gemini-1.5-flash*
+                  COMMENT_EOF
+
+                  gh pr comment ${{ github.event.pull_request.number }} --body-file comment.md
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: ⚠️ Erro
+              if: failure()
+              run: |
+                  gh pr comment ${{ github.event.pull_request.number }} --body "⚠️ Análise falhou. Veja logs em Actions."
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
